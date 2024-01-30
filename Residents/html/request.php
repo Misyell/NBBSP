@@ -117,6 +117,8 @@ $conn->close();
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="../css/request.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=AQxEV_aeujJ95mwU_bN736rx2peHM8Q1OV-HwN3RmGGUgtKtpk9tkq9DegYQ5J790wFtKcdD1Vz39PnF"></script>
+
 
 </head>
 <body>
@@ -207,7 +209,7 @@ $conn->close();
 
     <!--=============== MAIN ===============-->
     <main class="main-container" id="main">
-    <form id="requestForm" method="POST" action="<?php echo ($documentTax == 'Paid') ? './payment.html' : htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form id="requestForm" method="POST" >
             <h2>Clearance & Certificates</h2>
             <hr style="border: 1px solid #171922; margin: 2px -1px;">
 
@@ -247,9 +249,11 @@ $conn->close();
             <input type="radio" name="documenttax" id="documenttax_free" value="Free" <?php if ($documentTax == 'Free') echo "checked"; ?> required disabled> Free
             <input type="radio" name="documenttax" id="documenttax_paid" value="Paid" <?php if ($documentTax == 'Paid') echo "checked"; ?> required > Paid
             <input type="radio" name="documenttax" id="documenttax_payatb" value="Pay at the Barangay" <?php if ($documentTax == 'Pay at the Barangay') echo "checked"; ?> required > Pay at the Barangay<br>
+    
+           
+            <div id="paypal-button-container" style="width:10px;"></div>
 
-            <div id="paypal-button-container"></div>
-
+        
             <label for="notes">Notes</label>
             <input type="text" id="notes" name="notes" placeholder="Notes" required><br>
 
@@ -287,6 +291,66 @@ $conn->close();
     });
 </script>
   <!-- Replace the "test" client-id value with your client-id -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AVqeQ7DWQBtp8k1czjh4xsglT6IW07TA508u4nzuZ2QqI8Al4qQXpwVsrBD8BTk6A49wzf9BePhDwN4R&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AQxEV_aeujJ95mwU_bN736rx2peHM8Q1OV-HwN3RmGGUgtKtpk9tkq9DegYQ5J790wFtKcdD1Vz39PnF"></script>
+
+
+
+  <script>
+    // Function to toggle PayPal button visibility and form submission
+    function togglePayPalButton() {
+        var amount = document.getElementById('amount').value;
+        var documentTax = document.querySelector('input[name="documenttax"]:checked').value;
+        var paypalButtonContainer = document.getElementById('paypal-button-container');
+
+        if (amount > 0 && documentTax === 'Paid') {
+            paypalButtonContainer.style.display = 'block'; // Show PayPal button
+            document.getElementById('requestForm').addEventListener('submit', function(event) {
+                // Prevent form submission if document tax is 'Paid' and amount > 0 but PayPal not completed
+                event.preventDefault();
+                alert('Please complete payment with PayPal.');
+            });
+        } else {
+            paypalButtonContainer.style.display = 'none'; // Hide PayPal button
+            document.getElementById('requestForm').removeEventListener('submit', function(event) {
+                // Remove event listener for form submission prevention
+            });
+        }
+    }
+
+    // Event listener for document tax change
+    document.querySelectorAll('input[name="documenttax"]').forEach(function(elem) {
+        elem.addEventListener('change', function() {
+            togglePayPalButton(); // Toggle PayPal button visibility
+        });
+    });
+
+    // Event listener for type of request change
+    document.getElementById('type').addEventListener('change', function() {
+        togglePayPalButton(); // Toggle PayPal button visibility
+    });
+
+    // PayPal button script
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            var selectedType = document.getElementById('type').value;
+            var requestAmounts = <?php echo json_encode($requestAmounts); ?>;
+            var amount = requestAmounts[selectedType] || 0;
+
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: amount.toString() // Convert amount to string
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            alert('Payment successful!');
+            // You can perform further actions here after payment is successful
+        }
+    }).render('#paypal-button-container');
+</script>
+
+
 </body>
 </html>

@@ -150,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Sign up
                 </button>
             </div>
-            <img src="/img/logo.jpg" class="image" alt="" />
         </div>
         <div class="panel right-panel">
             <div class="content">
