@@ -69,6 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if amount is 0 and display pop-up message with reference number
         if ($amount == 0) {
             echo '<script>alert("Your submission was successful! Reference number: 123456");</script>';
+            echo '<script>window.location.href = "payment-free.html";</script>'; // Redirect to payment-free.html
+
         } else {
             echo "Your submission was successful!";
         }
@@ -157,8 +159,13 @@ $conn->close();
                         <span class="sidebar__link-name">Home</span>
                         <span class="sidebar__link-floating">Home</span>
                     </a>
+                    <a href="./registrationform.php" class="sidebar__link">
+                     <i class="ri-registered-line"></i>
+                     <span class="sidebar__link-name">registration</span>
+                     <span class="sidebar__link-floating">registration</span>
+                  </a>
 
-                    <a href="./request.html" class="sidebar__link">
+                    <a href="./request.php" class="sidebar__link">
                         <i class="ri-file-edit-line"></i>
                         <span class="sidebar__link-name">Request</span>
                         <span class="sidebar__link-floating">Request</span>
@@ -247,7 +254,7 @@ $conn->close();
 
             <label for="documenttax">Document Tax</label>
             <input type="radio" name="documenttax" id="documenttax_free" value="Free" <?php if ($documentTax == 'Free') echo "checked"; ?> required disabled> Free
-            <input type="radio" name="documenttax" id="documenttax_paid" value="Paid" <?php if ($documentTax == 'Paid') echo "checked"; ?> required > Paid
+            <input type="radio" name="documenttax" id="documenttax_paid" value="Paid" <?php if ($documentTax == 'Paid') echo "checked"; ?> required > Pay
             <input type="radio" name="documenttax" id="documenttax_payatb" value="Pay at the Barangay" <?php if ($documentTax == 'Pay at the Barangay') echo "checked"; ?> required > Pay at the Barangay<br>
     
            
