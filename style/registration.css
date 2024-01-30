@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body{
+  background: #fff;
+  position: relative;
+  margin: 0;
+  min-height: 100%;
+}
+
+
+
+/*sidebar*/
+
+
+
+
+
+
+/* end of sidebar*/
+.mid-title-2 {
+  background: #246dec;
+  display: grid;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 0px 80px;
+  
+}
+
+
+
+.mid-title-2 > p {
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+}
+
+
+
+
+.main-container {
+  grid-area: main;
+  overflow-y: auto;
+  padding: 60px 20px;
+  padding-left: 271px;
+}
+center {
+  padding: 10px 0px 10px 0px;
+}
+
+
+
+
+@media screen and (max-width: 768px){
+  .main-container {
+    padding-left: 85px; 
+  }
+
+
+   span.text-primary.font-weight-bold {
+    display: block;
+}
+
+}
+
+                                   
+
+input {
+  display: block;
+  margin: 25px 63px;
+  padding: 4px;
+  width: 131px;
+
+  font-size: 14px;
+  border-top-style: none;
+    border-inline: none;
+}
+select {
+  display: inline;
+  margin-left: 30px;
+  margin-top: 18px;
+  padding: 4px;
+  font-size: 13px;
+  width: 207px;
+  border: 1px solid;
+  border-top-style: none;
+  border-inline: none;
+  margin-bottom: 12px;
+}
+
+
+/*Forms*/
+
+input[type="radio"] {
+  display: inline;
+  margin: 13px -47px 13px -11px;
+}
+input[type="checkbox"] {
+  display: inline;
+  margin-left: -45px;
+  margin-right: -57px;
+}
+input#Household_num {
+  display: inline;
+  margin: 0px 17px;
+}
+input#fam_num {
+  display: inline;
+  margin: 0px 17px;
+}
+
+input#country {
+  display: inline;
+  margin: 0px 17px;
+}
+input#lname {
+  display: inline;
+  margin: 15px;
+  width: 250px;
+}
+input#ename {
+  display: inline;
+  margin: 10px;
+  width: 81px;
+}
+input#fname {
+  display: inline;
+  margin: 15px;
+  width: 250px;
+}
+input#mname {
+  display: inline;
+  margin: 10px;
+  width: 152px;
+}
+input#contact {
+  display: inline;
+  margin: 10px 26px;
+  width: 193px;
+}
+input#year {
+  display: inline;
+  margin: 10px 26px;
+  width: 193px;
+}
+input#dob {
+  display: inline;
+  margin: 10px;
+}
+input#brn {
+  display: inline;
+  margin: 10px;
+}
+input#brd {
+  display: inline;
+  margin: 10px;
+}
+input#weight {
+  display: inline;
+  margin: 10px;
+  width: 50px;
+}
+input#height {
+  display: inline;
+  margin: 10px;
+  width: 50px;
+}
+input#citizen {
+  display: inline;
+  margin: 10px;
+  width: 150px;
+}
+input#bplace {
+  display: inline;
+  margin: 10px;
+  width: 150px;
+}
+input#presentadd {
+  display: inline;
+  margin: 12px;
+  margin-top: 13px;
+  width: 152px;
+}
+input#job {
+  display: inline;
+  margin: 10px;
+  width: 180px;
+}
+input#skill {
+  display: inline;
+  margin: 10px;
+  width: 180px;
+}
+input#idnum {
+  display: inline;
+  margin: 10px;
+  width: 180px;
+}
+input#tin {
+  display: inline;
+  margin: 10px;
+  width: 180px;
+}
+input#email {
+  display: inline;
+  margin: 10px 26px;
+  width: 230px;
+}
+input#barangay_cap {
+  display: inline;
+  margin: 10px 26px;
+  width: 400px;
+}
+input#brgycoun {
+  display: inline;
+  margin: 12px 8px;
+  width: 389px;
+}
+input#personalbg {
+  display: inline;
+  margin: 10px 26px;
+  width: 400px;
+}
+input#name {
+  display: inline;
+  margin: 10px 26px;
+  width: 400px;
+}
+input#position {
+  display: inline;
+  margin: 13px 26px;
+  width: 400px;
+}
+select[name="status"] {
+  display: inline;
+  margin: 10px;
+  width: 135px;
+}
+label[for="voter"] {
+  margin-left: 64px;
+}
+
+select[name="gender"] {
+  display: inline;
+  margin: 10px;
+  width: 141px;
+}
+h5 {
+  display: inline;
+  margin-right: 153px;
+}
+
+input#boys {
+  display: inline;
+  margin: 14px;
+  width: 200px;
+}
+input#girls{
+  display: inline;
+  margin: 14px;
+  width: 200px;
+}
+input#pwd{
+  display: inline;
+  margin: 14px;
+  width: 200px;
+}
+input#senior{
+  display: inline;
+  margin: 14px;
+  width: 200px;
+}
+input#age-a{
+  display: inline;
+  margin: 14px;
+  width: 300px;
+}
+input#age-b{
+  display: inline;
+  margin: 14px;
+  width: 300px;
+}
+input#age-c{
+  display: inline;
+  margin: 14px;
+  width: 300px;
+}
+label {
+
+  font-weight: 600;
+
+}
+.column-pwd {
+  flex: 0 0 33.33%;
+  margin: -13px;
+}
+h2 {
+  margin: 10px;
+}
+h4 {
+  margin: 16px 0px 0px 156px;
+}
+.checkbox-wrapper {
+  display: flex;
+    align-items: center;
+    margin: -10px 38px;
+}
+.checkbox {
+  margin-right: 5px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.drop-zone {
+  width: 175px;
+  height: 183px;
+  padding: 0px;
+  display: inline;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cccccc;
+  border: 2px dashed #246dec;
+  border-radius: 10px;
+  margin: -229px 0px 0px 775px;
+}
+
+.drop-zone--over {
+	border-style: solid;
+}
+
+.drop-zone__input {
+	display: none;
+}
+
+.drop-zone__thumb {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: #cccccc;
+	background-size: cover;
+	position: relative;
+}
+
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 11px;
+  text-align: start;
+}
+.button-container {
+  display: inline-flex;
+  margin-left: 307px;
+  margin-top: 10px;
+}
+.button-container-1 {
+  display: inline-flex;
+  margin-left: 0px;;
+  margin-top: 10px;
+}
+
+.button-container,
+.button-container-1
+ input {
+  padding:13px 5px;
+
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+.button-container-1
+ input {
+  padding:13px 5px;
+  background-color: #246dec;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+input[type="submit"] {
+  border: none;
+  background: #246dec;
+  display: block;
+  border-radius: 7px;
+  height: 38px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 12px 0px 10px 347px;
+  padding: 11px;
+}
+input[type="reset"]{
+  border: none;
+  background: #246dec;
+  display: block;
+  border-radius: 7px;
+  height: 38px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 12px 0px 10px 7px;
+  padding: 11px;
+}
+
+@media (max-width: 1220px){
+
+  .drop-zone {
+	width: 70%;
+ }
+
+
+}
+
+
+
+footer {
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border-top: groove;
+}

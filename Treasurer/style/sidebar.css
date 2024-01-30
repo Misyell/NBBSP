@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body{
+  background: #fff;
+  position: relative;
+  margin: 0;
+  min-height: 100%;
+}
+
+@media (max-width: 900px){
+
+    .wrapper .side-bar{
+      width: 70px;
+   }
+   .wrapper span {
+      display: none;
+  }
+  .wrapper header img{
+      width: 80%;
+      margin: 27px 7px 0px;
+  
+  
+   }
+   i.fas.fa-angle-right.dropdown.rotate {
+      display: none;
+      position: fixed;
+  
+  }
+  
+  }
+  
+.wrapper .side-bar{
+    z-index: 1;
+    background: #246dec;
+    width: 250px;
+    height: -webkit-fill-available;
+    position: fixed;
+    top: 53px;
+    left: 0px;
+    overflow-y: auto;
+    transition: 0.6s ease;
+    transition-property: width;
+    border-radius: 0px 9px;
+}
+
+.wrapper .side-bar::-webkit-scrollbar {
+  width: 0px;
+}
+
+
+
+.wrapper .side-bar.active{
+ left: 0;
+}
+
+
+.wrapper .side-bar .menu{
+ width: 100%;
+
+}
+
+.wrapper .side-bar .menu .item{
+ position: relative;
+ cursor: pointer;
+ overflow: hidden;
+ margin: -9px -4px -14px -3px;
+}
+
+.wrapper .side-bar .menu .item a{
+ color: #fff;
+ font-size: 20px;
+ text-decoration: none;
+ display: block;
+ padding: 5px 30px;
+ line-height: 60px;
+}
+
+.wrapper .side-bar .menu .item a:hover{
+ background: #9fc2ffe8;
+ transition: 0.3s ease;
+}
+.wrapper span {
+    font-size: 15px;
+}
+
+.wrapper .side-bar .menu .item i{
+ margin-right: 15px;
+}
+
+.wrapper .side-bar .menu .item a .dropdown{
+ position: absolute;
+ right: 0;
+ margin: 20px;
+ transition: 0.3s ease;
+}
+
+.wrapper .side-bar .menu .item .sub-menu{
+ display: none;
+ padding: 0px 0px 0px 33px;
+}
+
+.wrapper .side-bar .menu .item .sub-menu a{
+ padding-left: 30px;
+}
+
+.wrapper .rotate{
+ transform: rotate(90deg);
+}
+
+
+
+@media (max-width: 900px){
+
+  .wrapper .side-bar{
+	width: 70px;
+ }
+ .wrapper span {
+    display: none;
+}
+.wrapper header img{
+	width: 80%;
+	margin: 27px 7px 0px;
+
+
+ }
+ i.fas.fa-angle-right.dropdown.rotate {
+    display: none;
+	position: fixed;
+
+}
+
+}
+
+img{
+  width: 100px;
+  margin: 15px;
+  border-radius: 50%;
+  margin-left: 70px;
+  border: 3px solid #b4b8b9;
+}
+header{
+  background: #246dec;
+}
