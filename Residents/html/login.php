@@ -116,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 });
             }
         </script>
-</head>
 <body>
 <div class="container">
     <div class="forms-container">

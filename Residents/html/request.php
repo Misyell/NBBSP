@@ -162,7 +162,6 @@ $conn->close();
                 });
             }
         </script>
-</head>
 <body>
 <div class="wrapper">
     <!-- Sidebar bg -->
@@ -233,7 +232,7 @@ $conn->close();
                     </a>
 
 
-                    <a href="./login.html" class="sidebar__link">
+                    <a href="./login.php" class="sidebar__link">
                         <i class="ri-logout-box-r-line"></i>
                         <span class="sidebar__link-name">Logout</span>
                         <span class="sidebar__link-floating">Logout</span>

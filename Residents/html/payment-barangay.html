@@ -10,48 +10,46 @@
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="../css/payment-free.css">
       <title>Confirmations</title>
-      <meta name="description" content="Description..." />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="theme-color" content="#03a9f4" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="description" content="Description..." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#03a9f4" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-      <!-- Twitter Card -->
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@site" />
-      <meta name="twitter:url" content="https://your-app.com" />
-      <meta name="twitter:title" content="Title" />
-      <meta name="twitter:description" content="Description..." />
-      <meta name="twitter:image" content="" />
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@site" />
+        <meta name="twitter:url" content="https://your-app.com" />
+        <meta name="twitter:title" content="Title" />
+        <meta name="twitter:description" content="Description..." />
+        <meta name="twitter:image" content="" />
 
-      <!-- Open Graph -->
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Title" />
-      <meta property="og:description" content="Description..." />
-      <meta property="og:site_name" content="My App" />
-      <meta property="og:url" content="https://your-app.com" />
-      <meta property="og:image" content="" />
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Title" />
+        <meta property="og:description" content="Description..." />
+        <meta property="og:site_name" content="My App" />
+        <meta property="og:url" content="https://your-app.com" />
+        <meta property="og:image" content="" />
 
-      <link rel="manifest" href="/manifest.json" />
-      <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
+        <link rel="manifest" href="/manifest.json" />
+        <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
-      <!-- Apple touch icon -->
-      <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
-  </head>
+        <!-- Apple touch icon -->
+        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
+    </head>
 
 
-      <script>
-          if ("serviceWorker" in navigator) {
-              window.addEventListener("load", function () {
-                  navigator.serviceWorker
-                      .register("/serviceWorker.js")
-                      .then((registration) => {
-                          console.log("SW registration successful");
-                      });
-              });
-          }
-      </script>
-
-   </head>
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker
+                        .register("/serviceWorker.js")
+                        .then((registration) => {
+                            console.log("SW registration successful");
+                        });
+                });
+            }
+        </script>
    <body>
    <div class="wrapper">
       <!-- Sidebar bg -->
@@ -121,7 +119,7 @@
                   </a>
 
 
-                  <a href="./login.html" class="sidebar__link">
+                  <a href="./login.php" class="sidebar__link">
                      <i class="ri-logout-box-r-line"></i>
                      <span class="sidebar__link-name">Logout</span>
                      <span class="sidebar__link-floating">Logout</span>
