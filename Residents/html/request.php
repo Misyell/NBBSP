@@ -121,7 +121,47 @@ $conn->close();
     <link rel="stylesheet" href="../css/request.css">
     <script src="https://www.paypal.com/sdk/js?client-id=AQxEV_aeujJ95mwU_bN736rx2peHM8Q1OV-HwN3RmGGUgtKtpk9tkq9DegYQ5J790wFtKcdD1Vz39PnF"></script>
 
+    <title>Request</title>
+        <meta name="description" content="Description..." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#03a9f4" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@site" />
+        <meta name="twitter:url" content="https://your-app.com" />
+        <meta name="twitter:title" content="Title" />
+        <meta name="twitter:description" content="Description..." />
+        <meta name="twitter:image" content="" />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Title" />
+        <meta property="og:description" content="Description..." />
+        <meta property="og:site_name" content="My App" />
+        <meta property="og:url" content="https://your-app.com" />
+        <meta property="og:image" content="" />
+
+        <link rel="manifest" href="/manifest.json" />
+        <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
+
+        <!-- Apple touch icon -->
+        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
+    </head>
+
+
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker
+                        .register("/serviceWorker.js")
+                        .then((registration) => {
+                            console.log("SW registration successful");
+                        });
+                });
+            }
+        </script>
 </head>
 <body>
 <div class="wrapper">
@@ -313,8 +353,8 @@ $conn->close();
             paypalButtonContainer.style.display = 'block'; // Show PayPal button
             document.getElementById('requestForm').addEventListener('submit', function(event) {
                 // Prevent form submission if document tax is 'Paid' and amount > 0 but PayPal not completed
-                event.preventDefault();
-                alert('Please complete payment with PayPal.');
+                //event.preventDefault();
+                //alert('Please complete payment with PayPal.');
             });
         } else {
             paypalButtonContainer.style.display = 'none'; // Hide PayPal button
