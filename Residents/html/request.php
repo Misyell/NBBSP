@@ -121,8 +121,8 @@ $conn->close();
     <link rel="stylesheet" href="../css/request.css">
     <script src="https://www.paypal.com/sdk/js?client-id=AQxEV_aeujJ95mwU_bN736rx2peHM8Q1OV-HwN3RmGGUgtKtpk9tkq9DegYQ5J790wFtKcdD1Vz39PnF"></script>
 
-    <title>Request</title>
-        <meta name="description" content="Description..." />
+    <title>NBBSP</title>
+        <meta name="description" content="barangay management information system" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#03a9f4" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -130,20 +130,20 @@ $conn->close();
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@site" />
-        <meta name="twitter:url" content="https://your-app.com" />
-        <meta name="twitter:title" content="Title" />
-        <meta name="twitter:description" content="Description..." />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:title" content="barangay management information system" />
+        <meta name="twitter:description" content="barangay management information system" />
         <meta name="twitter:image" content="" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Title" />
-        <meta property="og:description" content="Description..." />
+        <meta property="og:title" content="Barangay management information system" />
+        <meta property="og:description" content="Barangay management information system" />
         <meta property="og:site_name" content="My App" />
-        <meta property="og:url" content="https://your-app.com" />
+        <meta property="og:url" content="" />
         <meta property="og:image" content="" />
 
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="../html/manifest.json" />
         <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
         <!-- Apple touch icon -->
@@ -155,13 +155,14 @@ $conn->close();
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", function () {
                     navigator.serviceWorker
-                        .register("/serviceWorker.js")
+                        .register("../html/serviceWorker.js")
                         .then((registration) => {
                             console.log("SW registration successful");
                         });
                 });
             }
         </script>
+    </body>
 <body>
 <div class="wrapper">
     <!-- Sidebar bg -->
@@ -297,7 +298,7 @@ $conn->close();
             <input type="radio" name="documenttax" id="documenttax_payatb" value="Pay at the Barangay" <?php if ($documentTax == 'Pay at the Barangay') echo "checked"; ?> required > Pay at the Barangay<br>
     
            
-            <div id="paypal-button-container" style="width:10px;"></div>
+            <div id="paypal-button-container" style="width:10px;display: inline-block;"></div>
 
         
             <label for="notes">Notes</label>
