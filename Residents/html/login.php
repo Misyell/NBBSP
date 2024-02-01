@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+    
     // Sign up logic
     if (isset($_POST['signup'])) {
         $username = $_POST['username'];
@@ -76,7 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <title>Sign in & Sign up Form</title>
-        <meta name="description" content="Description..." />
+    <title>NBBSP</title>
+        <meta name="description" content="barangay management information system" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#03a9f4" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -84,20 +85,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@site" />
-        <meta name="twitter:url" content="https://your-app.com" />
-        <meta name="twitter:title" content="Title" />
-        <meta name="twitter:description" content="Description..." />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:title" content="barangay management information system" />
+        <meta name="twitter:description" content="barangay management information system" />
         <meta name="twitter:image" content="" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Title" />
-        <meta property="og:description" content="Description..." />
+        <meta property="og:title" content="Barangay management information system" />
+        <meta property="og:description" content="Barangay management information system" />
         <meta property="og:site_name" content="My App" />
-        <meta property="og:url" content="https://your-app.com" />
+        <meta property="og:url" content="" />
         <meta property="og:image" content="" />
 
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="../html/manifest.json" />
         <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
         <!-- Apple touch icon -->
@@ -109,14 +110,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", function () {
                     navigator.serviceWorker
-                        .register("/serviceWorker.js")
+                        .register("../html/serviceWorker.js")
                         .then((registration) => {
                             console.log("SW registration successful");
                         });
                 });
             }
         </script>
-<body>
+    </body>
 <div class="container">
     <div class="forms-container">
         <div class="signin-signup">
@@ -127,11 +128,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Username" />
+                    <input type="text" name="username" placeholder="Username" required/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="password" placeholder="Password" required/>
                 </div>
                 <input type="submit" value="Login" class="btn solid" name="signin" />
                 <p class="social-text">Or Sign in with social platforms</p>
@@ -152,15 +153,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Username" />
+                    <input type="text" name="username" placeholder="Username" required/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" placeholder="Email" />
+                    <input type="email" name="email" placeholder="Email" required/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="password" placeholder="Password" required/>
                 </div>
                 <input type="submit" value="Sign up" class="btn" name="signup" />
                 <p class="social-text">Or Sign up with social platforms</p>
