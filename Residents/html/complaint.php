@@ -1,4 +1,66 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   // Database connection
+   $servername = "localhost";
+   $username = "root";
+   $password = "";
+   $dbname = "db_barangay";
 
+   // Create connection
+   $conn = new mysqli($servername, $username, $password, $dbname);
+
+   // Check connection
+   if ($conn->connect_error) {
+       die("Connection failed: " . $conn->connect_error);
+   }
+
+   // Prepare and bind parameters
+   $stmt = $conn->prepare("INSERT INTO complaint (report_type, case_id, num_of_cases, complainant, complainant_address, dependants, defendant_address, issue_problem, date_filed, status, document_picture, lupon_statement, agreement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+   $stmt->bind_param("ssissssssssss", $report_type, $case_id, $num_of_cases, $complainant, $cadd, $dependants, $dadd, $issue, $date, $status, $document_picture, $lupon_statement, $agreement);
+
+   // Set parameters
+   $report_type = $_POST['reporttype'];
+   $case_id = $_POST['caseid'];
+   $num_of_cases = $_POST['numofcases'];
+   $complainant = $_POST['complainant'];
+   $cadd = $_POST['cadd'];
+   $dependants = $_POST['dependants'];
+   $dadd = $_POST['dadd'];
+   $issue = $_POST['issue'];
+   $date = $_POST['date'];
+   $status = $_POST['status'];
+
+   // Set file upload parameters
+   $document_picture = isset($_FILES['Picture']['name']) ? $_FILES['Picture']['name'] : '';
+   $lupon_statement = isset($_FILES['statement']['name']) ? $_FILES['statement']['name'] : '';
+   $agreement = isset($_FILES['agreement']['name']) ? $_FILES['agreement']['name'] : '';
+
+   // Move uploaded files to a permanent location
+   if (!empty($_FILES['Picture']['tmp_name'])) {
+       move_uploaded_file($_FILES['Picture']['tmp_name'], "uploads/" . $document_picture);
+   }
+   if (!empty($_FILES['statement']['tmp_name'])) {
+       move_uploaded_file($_FILES['statement']['tmp_name'], "uploads/" . $lupon_statement);
+   }
+   if (!empty($_FILES['agreement']['tmp_name'])) {
+       move_uploaded_file($_FILES['agreement']['tmp_name'], "uploads/" . $agreement);
+   }
+
+   // Execute the query
+   if ($stmt->execute()) {
+       echo '<script>alert("New record created successfully");</script>';
+
+       
+   } else {
+       echo "Error: " . $stmt->error;
+   }
+
+   // Close statement and connection
+   $stmt->close();
+   $conn->close();
+}
+
+?>
 
 <!DOCTYPE html>
    <html lang="en">
@@ -12,50 +74,49 @@
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="../css/complaint.css">
 
-      <title>Compllaint Box</title>
-        <meta name="description" content="Description..." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#03a9f4" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <title>Complaint Box</title>
+      <title>NBBSP</title>
+      <meta name="description" content="barangay management information system" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="theme-color" content="#03a9f4" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@site" />
-        <meta name="twitter:url" content="https://your-app.com" />
-        <meta name="twitter:title" content="Title" />
-        <meta name="twitter:description" content="Description..." />
-        <meta name="twitter:image" content="" />
+      <!-- Twitter Card -->
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@site" />
+      <meta name="twitter:url" content="" />
+      <meta name="twitter:title" content="barangay management information system" />
+      <meta name="twitter:description" content="barangay management information system" />
+      <meta name="twitter:image" content="" />
 
-        <!-- Open Graph -->
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Title" />
-        <meta property="og:description" content="Description..." />
-        <meta property="og:site_name" content="My App" />
-        <meta property="og:url" content="https://your-app.com" />
-        <meta property="og:image" content="" />
+      <!-- Open Graph -->
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Barangay management information system" />
+      <meta property="og:description" content="Barangay management information system" />
+      <meta property="og:site_name" content="My App" />
+      <meta property="og:url" content="" />
+      <meta property="og:image" content="" />
 
-        <link rel="manifest" href="/manifest.json" />
-        <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
+      <link rel="manifest" href="../html/manifest.json" />
+      <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
-        <!-- Apple touch icon -->
-        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
-    </head>
-
-
-        <script>
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", function () {
-                    navigator.serviceWorker
-                        .register("/serviceWorker.js")
-                        .then((registration) => {
-                            console.log("SW registration successful");
-                        });
-                });
-            }
-        </script>
+      <!-- Apple touch icon -->
+      <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
+  </head>
 
 
-   <body>
+      <script>
+          if ("serviceWorker" in navigator) {
+              window.addEventListener("load", function () {
+                  navigator.serviceWorker
+                      .register("../html/serviceWorker.js")
+                      .then((registration) => {
+                          console.log("SW registration successful");
+                      });
+              });
+          }
+      </script>
+  </body>
    <div class="wrapper">
       <!-- Sidebar bg -->
       <img src="assets/img/sidebar-bg.jpg" alt="sidebar img" class="bg-image">
@@ -102,7 +163,7 @@
                      <span class="sidebar__link-floating">Request</span>
                   </a>
 
-                  <a href="./complaint.html" class="sidebar__link">
+                  <a href="./complaint.php" class="sidebar__link">
                      <i class="ri-archive-fill"></i>
                      <span class="sidebar__link-name">Complaint Box</span>
                      <span class="sidebar__link-floating">Complaint Box</span>

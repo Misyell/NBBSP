@@ -27,7 +27,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/deceaseddata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/deceaseddata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     

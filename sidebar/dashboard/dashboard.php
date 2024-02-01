@@ -27,19 +27,7 @@
 				  <span class="fas fa-users"></span>
 				   <p class="text-primary">TOTAL POPULATION</p>
 				  </div>
-          <?php
-            $dash_card_query = "SELECT * from ";
-            $dash_card_query_run = mysql_query($con, $dash_card_query);
-
-            if($card_total = mysql_num_rows($dash_card_query_run))
-            {
-				    echo  '<span class="text-primary font-weight-bold"> </span>';
-            }
-            else
-            {
-              echo  '<span class="text-primary font-weight-bold"> No Data </span>';
-            }
-          ?>
+        
 			  </div>
 		  </a>    
 		  <a href="../dtotal Household/purok 1H.php">
@@ -49,19 +37,7 @@
 				  <p class="text-primary">TOTAL HOUSEHOLDS</p>
 				  
 				  </div>
-				  <?php
-            $dash_card_query = "SELECT * from ";
-            $dash_card_query_run = mysql_query($con, $dash_card_query);
-
-            if($card_total = mysql_num_rows($dash_card_query_run))
-            {
-				    echo  '<span class="text-primary font-weight-bold"> </span>';
-            }
-            else
-            {
-              echo  '<span class="text-primary font-weight-bold"> No Data </span>';
-            }
-          ?>
+         
 			  </div>
 		  </a>
 
@@ -71,19 +47,7 @@
 				  <span class="fas fa-exclamation-triangle"></span>
 				  <p class="text-primary">BLACKLIST</p>
 				  </div>
-          <?php
-            $dash_card_query = "SELECT * from ";
-            $dash_card_query_run = mysql_query($con, $dash_card_query);
-
-            if($card_total = mysql_num_rows($dash_card_query_run))
-            {
-				    echo  '<span class="text-primary font-weight-bold">' '</span>';
-            }
-            else
-            {
-              echo  '<span class="text-primary font-weight-bold"> No Data </span>';
-            }
-          ?>
+          
 				</div>
 		  </a>
 

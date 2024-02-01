@@ -66,19 +66,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$type', '$amount', '$purpose', '$date', '$requestname', '$Household_num', '$street', '$Brgy', '$municipality', '$province', '$documenttax', '$notes')";
 
     if ($conn->query($sql) === TRUE) {
-        // Check if amount is 0 and display pop-up message with reference number
-        if ($amount == 0) {
-            echo '<script>alert("Your submission was successful! Reference number: 123456");</script>';
-            echo '<script>window.location.href = "payment-free.html";</script>'; // Redirect to payment-free.html
+  // Check if amount is 0 and display pop-up message with reference number
+  if ($amount == 0) {
+    echo '<script>alert("Your submission was successful! Reference number: 123456");</script>';
+    echo '<script>window.location.href = "payment-free.html";</script>'; // Redirect to payment-free.html
 
-        } else {
-            echo "Your submission was successful!";
-        }
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+} else {
+    echo "Your submission was successful!";
+    
+    // Redirect based on document tax
+    if ($documentTax === 'Free') {
+        echo '<script>window.location.href = "payment-free.html";</script>'; // Redirect to payment-free.html
+    } elseif ($documentTax === 'Pay at the Barangay') {
+        echo '<script>window.location.href = "payment-barangay.html";</script>'; // Redirect to payment-barangay.html
     }
 }
-
+} else {
+echo "Error: " . $sql . "<br>" . $conn->error;
+}
+}
 // Retrieve request amounts from database
 $sql = "SELECT type, amount FROM request_amounts";
 $result = $conn->query($sql);
@@ -102,7 +108,7 @@ $documentTax = ($amount > 0) ? "Paid" : "Free";
 
 // Change button text and link based on document tax status
 $buttonText = ($documentTax == "Free") ? "Submit" : "Next";
-$buttonLink = ($documentTax == "Free") ? "submit_form.php" : "./payment.html";
+$buttonLink = ($documentTax == "Free") ? "submit_form.php" : "./payment-online.html";
 
 // Close database connection
 $conn->close();
@@ -194,7 +200,7 @@ $conn->close();
                         <span class="sidebar__link-floating">Profile</span>
                     </a>
 
-                    <a href="./Homepage.html" class="sidebar__link">
+                    <a href="./Homepage.php" class="sidebar__link">
                         <i class="ri-home-4-line"></i>
                         <span class="sidebar__link-name">Home</span>
                         <span class="sidebar__link-floating">Home</span>
@@ -293,7 +299,7 @@ $conn->close();
             <input type="text" id="radd" name="province" placeholder="Province" required><br>
 
             <label for="documenttax">Document Tax</label>
-            <input type="radio" name="documenttax" id="documenttax_free" value="Free" <?php if ($documentTax == 'Free') echo "checked"; ?> required disabled> Free
+            <input type="radio" name="documenttax" id="documenttax_free" value="Free" <?php if ($documentTax == 'Free') echo "checked"; ?> required > Free
             <input type="radio" name="documenttax" id="documenttax_paid" value="Paid" <?php if ($documentTax == 'Paid') echo "checked"; ?> required > Pay
             <input type="radio" name="documenttax" id="documenttax_payatb" value="Pay at the Barangay" <?php if ($documentTax == 'Pay at the Barangay') echo "checked"; ?> required > Pay at the Barangay<br>
     
@@ -331,7 +337,7 @@ $conn->close();
     document.getElementById('requestForm').addEventListener('submit', function(event) {
         var documentTax = document.querySelector('input[name="documenttax"]:checked').value;
         if (documentTax === 'Paid') {
-            window.location.href = 'payment.html'; // Redirect to payment page
+            window.location.href = 'payment-online.html'; // Redirect to payment page
             event.preventDefault(); // Prevent form submission
         }
         // If documentTax is 'Free', form will submit normally
@@ -361,6 +367,7 @@ $conn->close();
             document.getElementById('requestForm').removeEventListener('submit', function(event) {
                 // Remove event listener for form submission prevention
             });
+           
         }
     }
 

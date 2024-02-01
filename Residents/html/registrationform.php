@@ -10,8 +10,8 @@
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="../css/registration.css">
 
-      <title>Registration</title>
-        <meta name="description" content="Description..." />
+      <title>NBBSP</title>
+        <meta name="description" content="barangay management information system" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#03a9f4" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -19,20 +19,20 @@
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@site" />
-        <meta name="twitter:url" content="https://your-app.com" />
-        <meta name="twitter:title" content="Title" />
-        <meta name="twitter:description" content="Description..." />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:title" content="barangay management information system" />
+        <meta name="twitter:description" content="barangay management information system" />
         <meta name="twitter:image" content="" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Title" />
-        <meta property="og:description" content="Description..." />
+        <meta property="og:title" content="Barangay management information system" />
+        <meta property="og:description" content="Barangay management information system" />
         <meta property="og:site_name" content="My App" />
-        <meta property="og:url" content="https://your-app.com" />
+        <meta property="og:url" content="" />
         <meta property="og:image" content="" />
 
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="../html/manifest.json" />
         <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
         <!-- Apple touch icon -->
@@ -44,13 +44,14 @@
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", function () {
                     navigator.serviceWorker
-                        .register("/serviceWorker.js")
+                        .register("../html/serviceWorker.js")
                         .then((registration) => {
                             console.log("SW registration successful");
                         });
                 });
             }
         </script>
+
    <body>
    <div class="wrapper">
       <!-- Sidebar bg -->
@@ -99,7 +100,7 @@
                      <span class="sidebar__link-floating">Request</span>
                   </a>
 
-                  <a href="./complaint.html" class="sidebar__link">
+                  <a href="./complaint.php" class="sidebar__link">
                      <i class="ri-archive-fill"></i>
                      <span class="sidebar__link-name">Complaint Box</span>
                      <span class="sidebar__link-floating">Complaint Box</span>
@@ -144,7 +145,7 @@
 
       <!--=============== MAIN ===============-->
       <main class="main-container" id="main">
-               <form action="rconnect.php" method="POST" >
+               <form action="" method="POST" >
          <h2>Personal Information
          </h2>
          <hr style="
@@ -563,43 +564,43 @@
          <div class="container">
             <div class="column-pwd">
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Psychosocial Disability">
+               <input type="checkbox" name="pwd[]" value="Psychosocial Disability">
                <label for="Psychosocial Disability">Psychosocial Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Mental Disability">
+               <input type="checkbox" name="pwd[]" value="Mental Disability">
                <label for="Mental Disability">Mental Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Hearing Disability">
+               <input type="checkbox" name="pwd[]" value="Hearing Disability">
                <label for="Hearing Disability">Hearing Disability</label>
                </div>
             </div>
             <div class="column-pwd">
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Chronic Illness" >
+               <input type="checkbox" name="pwd[]" value="Chronic Illness" >
                <label for="Chronic Illness">Chronic Illness</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Visual Disability">
+               <input type="checkbox" name="pwd[]" value="Visual Disability">
                <label for="Visual Disability">Visual Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Speech Impairment">
+               <input type="checkbox" name="pwd[]" value="Speech Impairment">
                <label for="Speech Impairment">Speech Impairment</label>
                </div>
             </div>
             <div class="column-pwd">
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Learning Ability" >
+               <input type="checkbox" name="pwd[]" value="Learning Ability" >
                <label for="Learning Ability">Learning Ability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Orthopedic Disability" >
+               <input type="checkbox" name="pwd[]" value="Orthopedic Disability" >
                <label for="Orthopedic Disability">Orthopedic Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd" value="Others" n>
+               <input type="checkbox" name="pwd[]" value="Others" n>
                <label for="Others">Others</label>
                </div>
             </div>
@@ -620,6 +621,7 @@
       </footer>   
    </div>   
       <!--=============== MAIN JS ===============-->
-      <script src="../js/sidebar.js"></script>
-   </body>
+      <script src="../js/sidebar.js"></script>'
+<script src="../js/uploadpic.js"></script>  
+ </body>
 </html>

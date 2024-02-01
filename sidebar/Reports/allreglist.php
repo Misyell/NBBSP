@@ -30,7 +30,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/allregdata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/allregdata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     

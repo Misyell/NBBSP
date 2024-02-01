@@ -28,7 +28,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/brgyrepdata.html" frameborder="0" width="100%" height="500"></iframe>
+                    <iframe src="./datatables/brgyrepdata.php" frameborder="0" width="100%" height="500"></iframe>
                 </div>  
                     
     

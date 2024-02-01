@@ -30,7 +30,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/primlist.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/primlist.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
                 <iframe src="" frameborder="0" width="100%" height="600"></iframe>

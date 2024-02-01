@@ -22,13 +22,13 @@
                      
                 
                 <div class="mid-title-2">
-                        <p class="font-weight-bold" display="block" > CERTIFICATE & CERTIFICATES</p>
+                        <p class="font-weight-bold" display="block" > CERTIFICATES</p>
                 </div>    
                 <!---data table selection---->
                   
  
                 <div class="table">
-                    <iframe src="./datatables/cer&cleardata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="../Reports/datatables/cer_cleardata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     
