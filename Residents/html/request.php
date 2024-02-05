@@ -1,118 +1,3 @@
-<?php
-// Define the request amounts array
-$requestAmounts = array(
-    "Barangay ID" => 50,
-    "Barangay Indigency" => 0,
-    "Barangay Certificate" => 50,
-    "Certificate Jobseeker" => 50,
-    "Oath Taking Jobseeker" => 50,
-    "Business Clearance" => 50,
-    "Business Clearance-Closure" => 50,
-    "Certificate for Legal Guardian" => 50,
-    "Certificate No Birth-certificate" => 50,
-    "Certificate Burial" => 50,
-    "Fisheries Certification" => 50,
-    "Permit Occasion" => 50,
-    "Barangay Protection Order" => 50,
-    "Solo Parent" => 50,
-    "Travel Permit" => 50,
-
-);
-// Initialize other variables
-// Initialize other variables
-$selectedType = $amount = '';
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $selectedType = isset($_POST['type']) ? $_POST['type'] : '';
-    $amount = isset($requestAmounts[$selectedType]) ? $requestAmounts[$selectedType] : 0;
-}
-// Database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_barangay";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Initialize variables to store form data
-$type = $amount = $purpose = $date = $requestname = $Household_num = $street = "";
-$Brgy = $municipality = $province = $documenttax = $notes = "";
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $type = $_POST['type'];
-    $amount = $_POST['amount'];
-    $purpose = $_POST['purpose'];
-    $date = $_POST['date'];
-    $requestname = $_POST['requestname'];
-    $Household_num = $_POST['Household_num'];
-    $street = $_POST['street'];
-    $Brgy = $_POST['Brgy'];
-    $municipality = $_POST['municipality'];
-    $province = $_POST['province'];
-    $documenttax = $_POST['documenttax'];
-    $notes = $_POST['notes'];
-
-    // Insert form data into database
-    $sql = "INSERT INTO clearance_certificates (type, amount, purpose, date, requestname, Household_num, street, Brgy, municipality, province, documenttax, notes)
-            VALUES ('$type', '$amount', '$purpose', '$date', '$requestname', '$Household_num', '$street', '$Brgy', '$municipality', '$province', '$documenttax', '$notes')";
-
-    if ($conn->query($sql) === TRUE) {
-  // Check if amount is 0 and display pop-up message with reference number
-  if ($amount == 0) {
-    echo '<script>alert("Your submission was successful! Reference number: 123456");</script>';
-    echo '<script>window.location.href = "payment-free.html";</script>'; // Redirect to payment-free.html
-
-} else {
-    echo "Your submission was successful!";
-    
-    // Redirect based on document tax
-    if ($documentTax === 'Free') {
-        echo '<script>window.location.href = "payment-free.html";</script>'; // Redirect to payment-free.html
-    } elseif ($documentTax === 'Pay at the Barangay') {
-        echo '<script>window.location.href = "payment-barangay.html";</script>'; // Redirect to payment-barangay.html
-    }
-}
-} else {
-echo "Error: " . $sql . "<br>" . $conn->error;
-}
-}
-// Retrieve request amounts from database
-$sql = "SELECT type, amount FROM request_amounts";
-$result = $conn->query($sql);
-
-$requestAmountsFromDB = array();
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $requestAmountsFromDB[$row["type"]] = $row["amount"];
-    }
-}
-
-// Merge the arrays (overwrite values from database if they exist)
-$requestAmounts = array_merge($requestAmounts, $requestAmountsFromDB);
-
-// Retrieve selected type of request and its amount
-$selectedType = isset($_POST['type']) ? $_POST['type'] : '';
-$amount = isset($requestAmounts[$selectedType]) ? $requestAmounts[$selectedType] : 0;
-
-// Set document tax based on the amount
-$documentTax = ($amount > 0) ? "Paid" : "Free";
-
-// Change button text and link based on document tax status
-$buttonText = ($documentTax == "Free") ? "Submit" : "Next";
-$buttonLink = ($documentTax == "Free") ? "submit_form.php" : "./payment-online.html";
-
-// Close database connection
-$conn->close();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -124,8 +9,12 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="../css/request.css">
-    <script src="https://www.paypal.com/sdk/js?client-id=AQxEV_aeujJ95mwU_bN736rx2peHM8Q1OV-HwN3RmGGUgtKtpk9tkq9DegYQ5J790wFtKcdD1Vz39PnF"></script>
+    <link rel="stylesheet" href="../css/form.css">
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
 
     <title>NBBSP</title>
         <meta name="description" content="barangay management information system" />
@@ -186,225 +75,626 @@ $conn->close();
 
     <!--=============== SIDEBAR ===============-->
     <div class="sidebar" id="sidebar">
-        <nav class="sidebar__container">
+         <nav class="sidebar__container">
             <div class="sidebar__logo">
-                <img src="../img/logo-modified.png" alt="" class="sidebar__logo-img">
+               <img src="../img/logo-modified.png" alt="" class="sidebar__logo-img">
             </div>
 
             <div class="sidebar__content">
-
-                <div class="sidebar__list">
-                    <a href="./profile.html" class="sidebar__link active-link">
-                        <i class="ri-user-line"></i>
-                        <span class="sidebar__link-name">Profile</span>
-                        <span class="sidebar__link-floating">Profile</span>
-                    </a>
-
-                    <a href="./Homepage.php" class="sidebar__link">
-                        <i class="ri-home-4-line"></i>
-                        <span class="sidebar__link-name">Home</span>
-                        <span class="sidebar__link-floating">Home</span>
-                    </a>
-                    <a href="./registrationform.php" class="sidebar__link">
-                     <i class="ri-registered-line"></i>
-                     <span class="sidebar__link-name">registration</span>
-                     <span class="sidebar__link-floating">registration</span>
+              
+               <div class="sidebar__list">
+                  <a href="./profile.html" class="sidebar__link active-link">
+                     <i class="ri-user-line"></i>
+                     <span class="sidebar__link-name">Profile</span>
+                     <span class="sidebar__link-floating">Profile</span>
                   </a>
 
-                    <a href="./request.php" class="sidebar__link">
-                        <i class="ri-file-edit-line"></i>
-                        <span class="sidebar__link-name">Request</span>
-                        <span class="sidebar__link-floating">Request</span>
-                    </a>
+                  <a href="./manageacc.php" class="sidebar__link">
+                     <i class="ri-registered-line"></i>
+                     <span class="sidebar__link-name">Manage Account</span>
+                     <span class="sidebar__link-floating">Manage Account</span>
+                  </a>
+                  <a href="./request.php" class="sidebar__link">
+                     <i class="ri-file-edit-line"></i>
+                     <span class="sidebar__link-name">Request</span>
+                     <span class="sidebar__link-floating">Request</span>
+                  </a>
 
-                    <a href="./complaint.html" class="sidebar__link">
-                        <i class="ri-archive-fill"></i>
-                        <span class="sidebar__link-name">Complaint Box</span>
-                        <span class="sidebar__link-floating">Complaint Box</span>
-                    </a>
+                  <a href="./complaint.php" class="sidebar__link">
+                     <i class="ri-archive-fill"></i>
+                     <span class="sidebar__link-name">Complaint Box</span>
+                     <span class="sidebar__link-floating">Complaint Box</span>
+                  </a>
+               </div>
 
-                    <a href="./setting.html" class="sidebar__link">
-                        <i class="ri-settings-4-line"></i>
-                        <span class="sidebar__link-name">Setting</span>
-                        <span class="sidebar__link-floating">Setting</span>
-                    </a>
-                </div>
-
-
-                <div class="sidebar__list">
-                    <a href="./aboutus/AboutUs.html" class="sidebar__link">
-                        <i class="ri-information-fill"></i>
-                        <span class="sidebar__link-name">About Us</span>
-                        <span class="sidebar__link-floating">About Us</span>
-                    </a>
+              
+               <div class="sidebar__list">
+                  <a href="./aboutus/AboutUs.html" class="sidebar__link">
+                     <i class="ri-information-fill"></i>
+                     <span class="sidebar__link-name">About Us</span>
+                     <span class="sidebar__link-floating">About Us</span>
+                  </a>
 
 
-                    <a href="./login.php" class="sidebar__link">
-                        <i class="ri-logout-box-r-line"></i>
-                        <span class="sidebar__link-name">Logout</span>
-                        <span class="sidebar__link-floating">Logout</span>
-                    </a>
-                </div>
+                  <a href="./index.html" class="sidebar__link">
+                     <i class="ri-logout-box-r-line"></i>
+                     <span class="sidebar__link-name">Logout</span>
+                     <span class="sidebar__link-floating">Logout</span>
+                  </a>
+               </div>
             </div>
 
             <div class="sidebar__account">
-                <img src="../img/user.png" alt="sidebar image" class="sidebar__perfil">
+               <img src="../img/user.png" alt="sidebar image" class="sidebar__perfil">
 
-                <div class="sidebar__names">
-                    <h3 class="sidebar__name">Will Lens</h3>
-                    <span class="sidebar__email">willens@email.com</span>
-                </div>
+               <div class="sidebar__names">
+                  <h3 class="sidebar__name">Will Lens</h3>
+                  <span class="sidebar__email">willens@email.com</span>
+               </div>
 
-                <i class="ri-arrow-right-s-line"></i>
+               <i class="ri-arrow-right-s-line"></i>
             </div>
-        </nav>
-    </div>
+         </nav>
+      </div>
 
     <!--=============== MAIN ===============-->
-    <main class="main-container" id="main">
-    <form id="requestForm" method="POST" >
-            <h2>Clearance & Certificates</h2>
-            <hr style="border: 1px solid #171922; margin: 2px -1px;">
+  <main class="main-container" id="main">
+  <form action="" method="POST">
+    <label for="formSelector">Select a Type of Document:</label>
+    <select id="formSelector" name="doctype">
+          <option value="">---Select----</option>
+          <option value="barangayID">Barangay ID</option>
+          <option value="barangayIndigency">Barangay Indigency</option>
+          <option value="barangayCertificate">Barangay Certificate</option>
+          <option value="certificateJobseeker">Certificate Jobseeker</option>
+          <option value="oathTakingJobseeker">Oath Taking Jobseeker</option>
+          <option value="businessClearance">Business Clearance</option>
+          <option value="businessClosure">Business Clearance-Closure</option>
+          <option value="certificateLegalGuardian">Certificate for Legal Guardian</option>
+          <option value="certificateNoBirth">Certificate No Birth-certificate</option>
+          <option value="certificateBurial">Certificate Burial</option>
+          <option value="fisheriesCertification">Fisheries Certification</option>
+          <option value="permitOccasion">Permit Occasion</option>
+          <option value="soloParent">Solo Parent</option>
+          <option value="travelPermit">Travel Permit</option>
+        </select><br><br>
 
-            <label for="type">Type of Request</label>
-            <select name="type" id="type"  required>
-                <option value=""> -Select- </option>
-                <?php
-                foreach ($requestAmounts as $key => $value) {
-                  echo '<option value="' . $key . '"' . ($selectedType == $key ? ' selected' : '') . '>' . $key . '</option>';
-                    }
-                ?>
-            </select><br>
+        <label for="amount">Amount</label>
+        <input type="num" name="am" id="amount"><br><br>
+    </form>
+       
+        <div id="form">
+          <div id="barangayID" class="form hidden">
+            <h3>Barangay ID</h3>
+            <form action="id.html" method="POST">
+              <label for="lname">SurName</label>
+              <input type="text" id="lname" name="lname"  placeholder="Last Name" required>
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname"  placeholder="First Name" required><br>
+              <label for="mname">Middle Name</label>
+              <input type="text" id="mname" name="mname"  placeholder="Middle Name" required>
+              <label for="ename">Ext.(Jr/Sr) </label>
+              <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" required><br>
+              <label for="presentadd"> Present Address</label>
+              <input type="text" id="presentadd" name="Hnum" placeholder="House Number" required>
+              <input type="text" id="presentadd" name="street" placeholder=" Street " required>
+              <input type="text" id="presentadd" name="Brgy" placeholder=" Barangay" required>
+              <input type="text" id="presentadd" name="municipality" placeholder="Municipality" required>
+              <input type="text" id="presentadd" name="province" placeholder="Province" required><br>
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" name="dob" required>
+              <label for="gender">Sex</label>
+              <select name="gender" required>
+                <option> -Select- </option>
+                <option value="male ">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <label for="status">Civil Status</label>
+              <select name="marital" required>
+                <option>-select-</option>
+                <option value="single ">Single</option>
+                <option value="married">Married</option>
+                <option value="separated">Legally Separated</option>
+                <option value="widowed">Widowed</option>
+              </select>
+              <hr style="
+              border: 2px solid #246dec;
+              margin: 2px -1px;
+              ">
+              <h2>Physical Address</h2>
+              <label for="requestname">Name</label>
+              <input type="text" id="requestname" name="name" placeholder="Enter Name" required><br>
+              <label for="relation">Relation</label>
+              <input type="text" id="relation" name="relation" placeholder="Enter Relation" required><br>
+              <label for="contact">Contact Number</label>
+              <input type="number" id="contact" name="contact" required placeholder="Enter your phone number"required>
+     
+              <div id="paypal-button-container"></div>
 
-            <label for="amount">Amount</label>
-            <input type="text" id="amount" name="amount" value="<?php echo $amount; ?>" readonly><br>
-
-            <label for="purpose">Purpose</label>
-            <input type="text" id="purpose" name="purpose" placeholder="Purpose" required><br>
-
-            <label for="date">Date Issue</label>
-            <input type="date" id="date" name="date" required><br>
-
-            <h2>Requestor Information</h2>
-            <hr style="border: 1px solid #171922; margin: 2px -1px;">
-
-            <label for="requestname">Requestor Name</label>
-            <input type="text" id="requestname" name="requestname" placeholder="Requestor Name" required><br>
-
-            <label for="radd">Requestor Address</label>
-            <input type="text" id="radd" name="Household_num" placeholder="House Number" required>
-            <input type="text" id="radd" name="street" placeholder="Street" required>
-            <input type="text" id="radd" name="Brgy" placeholder="Barangay" required>
-            <input type="text" id="radd" name="municipality" placeholder="Municipality" required>
-            <input type="text" id="radd" name="province" placeholder="Province" required><br>
-
-            <label for="documenttax">Document Tax</label>
-            <input type="radio" name="documenttax" id="documenttax_free" value="Free" <?php if ($documentTax == 'Free') echo "checked"; ?> required > Free
-            <input type="radio" name="documenttax" id="documenttax_paid" value="Paid" <?php if ($documentTax == 'Paid') echo "checked"; ?> required > Pay
-            <input type="radio" name="documenttax" id="documenttax_payatb" value="Pay at the Barangay" <?php if ($documentTax == 'Pay at the Barangay') echo "checked"; ?> required > Pay at the Barangay<br>
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+          <div id="barangayIndigency" class="form hidden">
+            <h3>Barangay Indigency</h3>
+            <form action="brgyindigency" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="status">Civil Status</label>
+                <select name="marital" required>
+                  <option>-select-</option>
+                  <option value="single ">Single</option>
+                  <option value="married">Married</option>
+                  <option value="separated">Legally Separated</option>
+                  <option value="widowed">Widowed</option>
+                </select><br>
+                <label for="presentadd"> Present Address</label>
+                <input type="text" id="presentadd" name="Hnum" placeholder="House Number" required>
+                <input type="text" id="presentadd" name="street" placeholder=" Street " required>
+                <input type="text" id="presentadd" name="Brgy" placeholder=" Barangay" required>
+                <input type="text" id="presentadd" name="municipality" placeholder="Municipality" required>
+                <input type="text" id="presentadd" name="province" placeholder="Province" required><br>
+                <label for="request">Requested By </label>
+                <input type="text" id="request" name="request" placeholder="Requestor Name" required><br>
+                <label for="notes">Reason for Requesting</label>
+                <input type="text" id="notes" name="notes" placeholder="Reason" required><br>
     
-           
-            <div id="paypal-button-container" style="width:10px;display: inline-block;"></div>
-
-        
-            <label for="notes">Notes</label>
-            <input type="text" id="notes" name="notes" placeholder="Notes" required><br>
-
-            <div class="button-container">
-                <input type="submit" value="<?php echo $buttonText; ?>">
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+          <div id="barangayCertificate" class="form hidden">
+              <h3>Barangay Certificate</h3>
+              <form action="certificate.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="status">Civil Status</label>
+                <select name="marital" required>
+                  <option>-select-</option>
+                  <option value="single ">Single</option>
+                  <option value="married">Married</option>
+                  <option value="separated">Legally Separated</option>
+                  <option value="widowed">Widowed</option>
+                </select><br>
+                <label for="presentadd"> Present Address</label>
+                <input type="text" id="presentadd" name="Hnum" placeholder="House Number" required>
+                <input type="text" id="presentadd" name="street" placeholder=" Street " required>
+                <input type="text" id="presentadd" name="Brgy" placeholder=" Barangay" required>
+                <input type="text" id="presentadd" name="municipality" placeholder="Municipality" required>
+                <input type="text" id="presentadd" name="province" placeholder="Province" required><br>
+                <label for="notes">Reason for Requesting</label>
+                <input type="text" id="notes" name="notes" placeholder="Reason" required><br>
+    
+              <input type="submit" value="Submit">
+            </form>            
+        </div>
+            <div id="certificateJobseeker" class="form hidden">
+              <h3>Certificate Jobseeker</h3>
+              <form action="jobseeker.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="year">Years/Months of Residency on Brgy</label>
+                <input type="num" id="year" name="year" placeholder="Ex. 10 Years" required>
+                
+             
+              <input type="submit" value="Submit">
+            </form>   
             </div>
-        </form>
-    </main>
+            <div id="oathTakingJobseeker" class="form hidden">
+              <h3>Oath Taking Jobseeker</h3>
+              <form action="oath.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <label for="year">Years/Months of Residency on Brgy</label>
+                <input type="text" id="year" name="year" placeholder="Ex. 10 Years" required>
+             
+              <input type="submit" value="Submit">
+            </form>  
+            </div>
+            <div id="businessClearance" class="form hidden">
+              <h3>Business Clearance</h3>
+              <form action="Business.html" method="POST">
+                <label for="Busitrade">Type of Business/services</label>
+                <input type="text" id="Busitrade" name="Busitrade" placeholder="Enter Type of Business/services" required><br>
+                <label for="manager">Operator/Manager</label>
+                <input type="text" id="manager" name="manager" placeholder="Enter Operator/Manager" required><br>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Business Address" required><br>
+                <div id="paypal-button-container-1"></div>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="businessClosure" class="form hidden">
+              <h3>Business Clearance-Closure</h3>
+              <form action="closure.html" method="POST">
+                <label for="Busitrade">Type of Business/services</label>
+                <input type="text" id="Busitrade" name="Busitrade" placeholder="Enter Type of Business/services" required><br>
+                <label for="manager">Operator/Manager</label>
+                <input type="text" id="manager" name="manager" placeholder="Enter Operator/Manager" required><br>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Business Address" required><br>
+                <div id="paypal-button-container-2"></div>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="certificateLegalGuardian" class="form hidden">
+              <h3>Certificate for Legal Guardian</h3>
+              <form action="legalguardian.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <label for="child">Name of the Child</label>
+                <input type="text" id="child" name="child" placeholder="Enter Full Name of the Child" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="certificateNoBirth" class="form hidden">
+              <h3>Certificate No Birth-certificate</h3>
+              <form action="nobirth.html" method="POST">
+                <label for="requestname">Name of Guardian</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Name of Guardian" required><br>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <label for="child">Name of the Child</label>
+                <input type="text" id="child" name="child" placeholder="Enter Full Name of the Child" required><br>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+                <label for="bplace">Birth Place</label>
+                <input type="text" id="bplace" name="bplace" placeholder="Municipality" required>       
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="certificateBurial" class="form hidden">
+              <h3>Certificate Burial</h3>
+              <form action="burial.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="status">Civil Status</label>
+                <select name="marital" required>
+                  <option>-select-</option>
+                  <option value="single ">Single</option>
+                  <option value="married">Married</option>
+                  <option value="separated">Legally Separated</option>
+                  <option value="widowed">Widowed</option>
+                </select><br>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <label for="Deceased">Name of Deceased</label>
+                <input type="text" id="Deceased" name="Deceased" placeholder="Enter Full Name of Deceased" required><br>
+                
+
+               <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="fisheriesCertification" class="form hidden">
+              <h3>Fisheries Certification</h3>
+              <form action="fisheries.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="add">Full Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="gender">Sex</label>
+               <select name="gender" required>
+                <option> -Select- </option>
+                <option value="male ">Male</option>
+                <option value="female">Female</option>
+               </select>
+               <div id="paypal-button-container-3"></div>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="permitOccasion" class="form hidden">
+              <h3>Permit Occasion</h3>
+              <form action="occasion.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="type">Type of Event</label>
+                <input type="text" id="type" name="type" placeholder="Ex. Birthday" required>
+                <label for="dob">Time of event</label>
+                <input type="text" id="dob" name="dob" placeholder="Ex. 1pm to 10pm"required><br>
+                <label for="add">Location of Event</label>
+                <input type="text" id="add" name="add" placeholder="Enter Location of the Event" required><br>
+                <div id="paypal-button-container-4"></div>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+           
+            <div id="soloParent" class="form hidden">
+              <h3>Solo Parent</h3>
+              <form action="solo.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="age">Age</label>
+                <input type="num" id="age" name="age" placeholder="Enter age" required>
+                <label for="add">Address</label>
+                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <label for="dob">Solo Parent Since </label>
+                <input type="month" id="dob" name="dob" placeholder="MM/YYYY" required>
+                <label for="no">No. of Children</label>
+                <input type="num" id="no" name="no" placeholder="Enter No. of Children" required>
+
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <div id="travelPermit" class="form hidden">
+              <h3>Travel Permit</h3>
+              <form action="travel.html" method="POST">
+                <label for="requestname">Full Name</label>
+                <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
+                <label for="weight">Load/Karga(kg)</label>
+                <input type="number" id="weight" name="weight" placeholder=" kg" required>
+                <label for="add">From(Location)</label>
+                <input type="text" id="add" name="add" placeholder="Enter Location" required><br>
+                <label for="desti">Destination</label>
+                <input type="text" id="desti" name="desti" placeholder="Enter Destination" required><br>
+                <label for="dob">Date of Departure </label>
+                <input type="month" id="dob" name="dob" required>
+                <label for="type">Type of Vehicle</label>
+                <input type="text" id="type" name="type" placeholder="Enter Type of Vehicle" required><br>
+                <label for="plate">Plate Number</label>
+                <input type="text" id="plate" name="plate" placeholder="Enter Plate Number" required>
+                <label for="drive">Driver </label>
+                <input type="text" id="drive" name="drive" placeholder="Enter Driver Name" required><br>
+                <div id="paypal-button-container-5"></div>
+
+                <input type="submit" value="submit">
+              </form>
+            </div>
+      
+        </div>
+      
+  </main>
 
     <footer>
         Copyright &copy; <script>document.write(new Date().getFullYear())</script>websitename
     </footer>
-</div>
+
 <!--=============== MAIN JS ===============-->
 <script src="../js/sidebar.js"></script>
 <script>
-    document.getElementById('type').addEventListener('change', function() {
-        var selectedType = this.value;
-        var requestAmounts = <?php echo json_encode($requestAmounts); ?>;
-        var amount = requestAmounts[selectedType] || 0;
-        document.getElementById('amount').value = amount;
-        if (amount > 0) {
-            document.getElementById('documenttax_paid').checked = true;
-        } else {
-            document.getElementById('documenttax_free').checked = true;
-        }
+  document.getElementById('formSelector').addEventListener('change', function() {
+    var selectedValue = this.value;
+    var forms = document.querySelectorAll('.form');
+    forms.forEach(function(form) {
+      if (form.id === selectedValue) {
+        form.classList.remove('hidden');
+      } else {
+        form.classList.add('hidden');
+      }
     });
-    document.getElementById('requestForm').addEventListener('submit', function(event) {
-        var documentTax = document.querySelector('input[name="documenttax"]:checked').value;
-        if (documentTax === 'Paid') {
-            window.location.href = 'payment-online.html'; // Redirect to payment page
-            event.preventDefault(); // Prevent form submission
-        }
-        // If documentTax is 'Free', form will submit normally
-    });
+  });
 </script>
-  <!-- Replace the "test" client-id value with your client-id -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AQxEV_aeujJ95mwU_bN736rx2peHM8Q1OV-HwN3RmGGUgtKtpk9tkq9DegYQ5J790wFtKcdD1Vz39PnF"></script>
+<script>
+  const formSelector = document.getElementById('formSelector');
+  const amountInput = document.getElementById('amount');
 
+  formSelector.addEventListener('change', function() {
+    const selectedOption = formSelector.value;
 
-
-  <script>
-    // Function to toggle PayPal button visibility and form submission
-    function togglePayPalButton() {
-        var amount = document.getElementById('amount').value;
-        var documentTax = document.querySelector('input[name="documenttax"]:checked').value;
-        var paypalButtonContainer = document.getElementById('paypal-button-container');
-
-        if (amount > 0 && documentTax === 'Paid') {
-            paypalButtonContainer.style.display = 'block'; // Show PayPal button
-            document.getElementById('requestForm').addEventListener('submit', function(event) {
-                // Prevent form submission if document tax is 'Paid' and amount > 0 but PayPal not completed
-                //event.preventDefault();
-                //alert('Please complete payment with PayPal.');
-            });
-        } else {
-            paypalButtonContainer.style.display = 'none'; // Hide PayPal button
-            document.getElementById('requestForm').removeEventListener('submit', function(event) {
-                // Remove event listener for form submission prevention
-            });
-           
-        }
+    // Define your logic to determine the amount based on the selected option
+    let amount = 0;
+    switch (selectedOption) {
+      case 'barangayID':
+        amount = 50; 
+        break;
+      case 'barangayIndigency':
+        amount = 0; 
+        break;
+      case 'barangayCertificate':
+        amount = 0; 
+        break;
+      case 'certificateJobseeker':
+        amount = 0; 
+        break;
+      case 'oathTakingJobseeker':
+        amount = 0; 
+        break;
+      case 'businessClearance':
+        amount = 100; 
+        break;
+      case 'businessClosure':
+        amount = 50; 
+        break;
+      case 'certificateLegalGuardian':
+        amount = 0; 
+        break;
+      case 'certificateNoBirth':
+        amount = 50; 
+        break;
+      case 'certificateBurial':
+        amount = 0; 
+        break;
+      case 'fisheriesCertification':
+        amount = 50; 
+        break;  
+      case 'permitOccasion':
+        amount = 50; 
+        break;
+      case 'soloParent':
+        amount = 0; 
+        break;
+      case 'travelPermit':
+        amount = 50; 
+        break;
     }
 
-    // Event listener for document tax change
-    document.querySelectorAll('input[name="documenttax"]').forEach(function(elem) {
-        elem.addEventListener('change', function() {
-            togglePayPalButton(); // Toggle PayPal button visibility
-        });
-    });
+    // Update the amount input field
+    amountInput.value = amount;
+  });
 
-    // Event listener for type of request change
-    document.getElementById('type').addEventListener('change', function() {
-        togglePayPalButton(); // Toggle PayPal button visibility
-    });
-
-    // PayPal button script
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            var selectedType = document.getElementById('type').value;
-            var requestAmounts = <?php echo json_encode($requestAmounts); ?>;
-            var amount = requestAmounts[selectedType] || 0;
-
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: amount.toString() // Convert amount to string
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            alert('Payment successful!');
-            // You can perform further actions here after payment is successful
-        }
-    }).render('#paypal-button-container');
+  
 </script>
+<script src="https://www.paypal.com/sdk/js?client-id=ASp3h09Cc5tbBBbx8uMLDkfe7Aed8hzPaRnU_56wAn389m2uHfPuKa3RuoedYN69CS6GOFMDUjUMp0jW"></script>
 
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountInput.value // Use the dynamically updated amount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log('Data :' + data);
+      console.log('Action : ' + actions);
+      return actions.order.capture().then(function(details) {
+        console.log(details.payer.name.given_name);
+      });
+    },
+    style: {
+      layout: 'vertical',
+      disableFunding: 'credit,card' // Remove debit or credit card button
+    }
+  }).render('#paypal-button-container');
+</script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountInput.value // Use the dynamically updated amount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log('Data :' + data);
+      console.log('Action : ' + actions);
+      return actions.order.capture().then(function(details) {
+        console.log(details.payer.name.given_name);
+      });
+    },
+    style: {
+      layout: 'vertical',
+      disableFunding: 'credit,card' // Remove debit or credit card button
+    }
+  }).render('#paypal-button-container-1');
+</script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountInput.value // Use the dynamically updated amount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log('Data :' + data);
+      console.log('Action : ' + actions);
+      return actions.order.capture().then(function(details) {
+        console.log(details.payer.name.given_name);
+      });
+    },
+    style: {
+      layout: 'vertical',
+      disableFunding: 'credit,card' // Remove debit or credit card button
+    }
+  }).render('#paypal-button-container-2');
+</script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountInput.value // Use the dynamically updated amount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log('Data :' + data);
+      console.log('Action : ' + actions);
+      return actions.order.capture().then(function(details) {
+        console.log(details.payer.name.given_name);
+      });
+    },
+    style: {
+      layout: 'vertical',
+      disableFunding: 'credit,card' // Remove debit or credit card button
+    }
+  }).render('#paypal-button-container-3');
+</script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountInput.value // Use the dynamically updated amount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log('Data :' + data);
+      console.log('Action : ' + actions);
+      return actions.order.capture().then(function(details) {
+        console.log(details.payer.name.given_name);
+      });
+    },
+    style: {
+      layout: 'vertical',
+      disableFunding: 'credit,card' // Remove debit or credit card button
+    }
+  }).render('#paypal-button-container-4');
+</script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amountInput.value // Use the dynamically updated amount
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log('Data :' + data);
+      console.log('Action : ' + actions);
+      return actions.order.capture().then(function(details) {
+        console.log(details.payer.name.given_name);
+      });
+    },
+    style: {
+      layout: 'vertical',
+      disableFunding: 'credit,card' // Remove debit or credit card button
+    }
+  }).render('#paypal-button-container-5');
+</script> 
 
 </body>
 </html>

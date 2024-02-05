@@ -668,7 +668,16 @@ img {
     margin: 12px 0px 10px 7px;
     padding: 11px;
   }
-
+  input#currentPassword {
+    display: inline;
+    margin: 10px;
+    width: 200px;
+}
+input#newPassword{
+  display: inline;
+  margin: 10px;
+  width: 200px;
+}
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 430px) {

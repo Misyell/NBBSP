@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows == 1) {
             // Redirect the user to a dashboard or homepage upon successful sign-in
-            header("Location: Homepage.html");
+            header("Location: request.php");
             exit();
         } else {
             $error_message = "Invalid username or password"; // Set error message
@@ -135,15 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" name="password" placeholder="Password" required/>
                 </div>
                 <input type="submit" value="Login" class="btn solid" name="signin" />
-                <p class="social-text">Or Sign in with social platforms</p>
-                <div class="social-media">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-google"></i>
-                    </a>
-                </div>
+
             </form>
             <?php if ($show_signup) { ?> <!-- Show sign-up section based on flag -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="sign-up-form">
@@ -164,15 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" name="password" placeholder="Password" required/>
                 </div>
                 <input type="submit" value="Sign up" class="btn" name="signup" />
-                <p class="social-text">Or Sign up with social platforms</p>
-                <div class="social-media">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-google"></i>
-                    </a>
-                </div>
+
             </form>
             <?php } ?>
         </div>
@@ -181,10 +165,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="panels-container">
         <div class="panel left-panel">
             <div class="content">
+            <div class="logo">
+                    <img src="../img/logo-modified.png" alt="">
+                </div>
                 <h3>New here ?</h3>
                 <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                    ex ratione. Aliquid!
+                Click the sign up to create your account and unlock Barangay Services.
                 </p>
                 <button class="btn transparent" id="sign-up-btn">
                     Sign up
@@ -193,16 +179,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="panel right-panel">
             <div class="content">
-                <h3>One of us ?</h3>
+                <div class="logo">
+                    <img src="../img/logo-modified.png" alt="">
+                </div>
+                <h3>Already have an account?</h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                    laboriosam ad deleniti.
+                 Log in here to access your profile and continue using our services!
                 </p>
                 <button class="btn transparent" id="sign-in-btn">
                     Sign in
                 </button>
             </div>
-            <img src="img/register.svg" class="image" alt="" />
         </div>
     </div>
 </div>

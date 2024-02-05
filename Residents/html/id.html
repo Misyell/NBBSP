@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -8,9 +10,28 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
       <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="../../css/hotlines.css">
+      <link rel="stylesheet" href="../css/complaint.css">
+      <style>
+    
 
-      <title>Hotlines</title>
+         .pdf-container {
+           border: 1px solid #ccc;
+           height: 600px; /* Adjust height as needed */
+           position: relative;
+         }
+         .pdf-container embed {
+           width: 100%;
+           height: 100%;
+           position: absolute;
+           top: 0;
+           left: 0;
+         }
+         .note {
+           margin-top: 20px;
+           font-style: italic;
+         }
+       </style>
+      <title>NBBSP</title>
       <meta name="description" content="barangay management information system" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="theme-color" content="#03a9f4" />
@@ -32,7 +53,7 @@
       <meta property="og:url" content="" />
       <meta property="og:image" content="" />
 
-      <link rel="manifest" href="../../html/manifest.json" />
+      <link rel="manifest" href="../html/manifest.json" />
       <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
       <!-- Apple touch icon -->
@@ -70,43 +91,39 @@
       <div class="sidebar" id="sidebar">
          <nav class="sidebar__container">
             <div class="sidebar__logo">
-               <img src="../../img/logo-modified.png" alt="" class="sidebar__logo-img">
+               <img src="../img/logo-modified.png" alt="" class="sidebar__logo-img">
             </div>
 
             <div class="sidebar__content">
               
                <div class="sidebar__list">
-                  <a href="../profile.html" class="sidebar__link active-link">
+                  <a href="./profile.html" class="sidebar__link active-link">
                      <i class="ri-user-line"></i>
                      <span class="sidebar__link-name">Profile</span>
                      <span class="sidebar__link-floating">Profile</span>
                   </a>
 
-         
-                  
-                  <a href="../manageacc.php" class="sidebar__link">
+                  <a href="./manageacc.php" class="sidebar__link">
                      <i class="ri-registered-line"></i>
-                     <span class="sidebar__link-name">registration</span>
-                     <span class="sidebar__link-floating">registration</span>
+                     <span class="sidebar__link-name">Manage Account</span>
+                     <span class="sidebar__link-floating">Manage Account</span>
                   </a>
-                  <a href="../request.php" class="sidebar__link">
+                  <a href="./request.php" class="sidebar__link">
                      <i class="ri-file-edit-line"></i>
                      <span class="sidebar__link-name">Request</span>
                      <span class="sidebar__link-floating">Request</span>
                   </a>
 
-                  <a href="../complaint.php" class="sidebar__link">
+                  <a href="./complaint.php" class="sidebar__link">
                      <i class="ri-archive-fill"></i>
                      <span class="sidebar__link-name">Complaint Box</span>
                      <span class="sidebar__link-floating">Complaint Box</span>
                   </a>
-
-               
                </div>
 
               
                <div class="sidebar__list">
-                  <a href="../aboutus/AboutUs.html" class="sidebar__link">
+                  <a href="./aboutus/AboutUs.html" class="sidebar__link">
                      <i class="ri-information-fill"></i>
                      <span class="sidebar__link-name">About Us</span>
                      <span class="sidebar__link-floating">About Us</span>
@@ -122,7 +139,7 @@
             </div>
 
             <div class="sidebar__account">
-               <img src="../../img/user.png" alt="sidebar image" class="sidebar__perfil">
+               <img src="../img/user.png" alt="sidebar image" class="sidebar__perfil">
 
                <div class="sidebar__names">
                   <h3 class="sidebar__name">Will Lens</h3>
@@ -134,64 +151,17 @@
          </nav>
       </div>
 
+
       <!--=============== MAIN ===============-->
       <main class="main-container" id="main">
-        <nav class="nav-2">
-            <ul>
-                <li><a href="AboutUs.html">About Us</a></li> 
-               <li><a href="committee.html"> Community Member</a></li>
-                <li><a href="help&sop.html">Help & Support</a></li>
-                <li><a href="t&c.html">Terms & Condition</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="hotlines.html">Hotlines</a></li>
-            </ul>
-        </nav>
-        <div class="content">
-         <div class="title-2"> 
-         <h2>Contact Us</h2>
-         <hr style="
-                        border: 1px solid #246dec94;
-                        margin: 2px -1px;
-                        ">
-     </div>
- 
-         <div  id="hot" class="hot">
-             <div class="picture">
- 
-                 <img src="../../img/logo.jpg" alt="">
-             </div>
-     
-        <span>
-            
-        Barangay Hotline: (8)286-93-50
-        <br>
-        <br>
-        Barangay P.I.O Hotline: 0967-247-6939
-        <br>
-        <br>
-        Barangay Captain: "Kap Boy" Desabille <br>
-        Contact: <br>
-        Globe: 0966-698-8945 <br>
-        Smart: 0960-430-6830 <br>
-        <br>
-        Barangay Ambulance: 0912-5303-102
-        <br><br>
-        NBBS Proper Fire and <br>
-        rescue Volunteer: 0963-1608-002
- 
-     
-        Facebook Page: BARANGAY NBBS Proper
-        <br>
-        Police Station Navotas: 8281-90-99/ 8281-91-10
-        <br>
-        BFP Navotas: 8286-08-54
- <br>
- 
- 
- 
-     </span>
-
-      
+         <div class="container">
+            <h2>Preview Page</h2>
+            <div class="pdf-container">
+              <!-- Embed PDF file here -->
+              <embed src="../../document/BARANGAY ID NEW.pdf#toolbar=0" type="application/pdf" >
+            </div>
+            <p class="note">Note: The receipt will be given in barangay.</p>
+          </div>
 
       </main>
 
@@ -200,6 +170,7 @@
       </footer>   
    </div>   
       <!--=============== MAIN JS ===============-->
-      <script src="../../js/sidebar.js"></script>
+
+      <script src="../js/sidebar.js"></script>
    </body>
 </html>
