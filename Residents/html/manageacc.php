@@ -50,13 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $skill = $_POST['skill'];
     $idnum = $_POST['idnum'];
     $tin = $_POST['tin'];
-    $pwd = isset($_POST['pwd']) ? implode(", ", $_POST['pwd']) : ''; // Serialize the array into a string
+    $pwd = $_POST['pwd'];
+
+
+
+    // Repeat the process for all other form fields
 
     // Handle file upload
     $target_dir = "uploads/";
-    $myFile = $target_dir . basename($_FILES["myFile"]["name"]);
+    $target_file = $target_dir . basename($_FILES["myFile"]["name"]);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($myFile, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
@@ -71,10 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Check file size
-    if ($_FILES["myFile"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
+    
     
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
@@ -83,20 +84,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadOk = 0;
     }
     
+
+
     // Insert into tblresident
     $sql = "INSERT INTO tblresident (housetype, housenum, famnum, residenttype, gender, lname, ename, fname, mname, contact, year, dob, brn, brd, weight, height, nationality, bplace, marital, soloparent, permadd, Hnum, street, Brgy, municipality, province, osy, voter, ofw, country, job, skill, idnum, tin, pwd, myFile) 
-            VALUES ('$housetype', '$housenum', '$famnum', '$residenttype', '$gender', '$lname', '$ename', '$fname', '$mname', '$contact', '$year', '$dob', '$brn', '$brd', '$weight', '$height', '$nationality', '$bplace', '$marital', '$soloparent', '$permadd', '$Hnum', '$street', '$Brgy', '$municipality', '$province', '$osy', '$voter', '$ofw', '$country', '$job', '$skill', '$idnum', '$tin', '$pwd', '$myFile')";
-        
+    VALUES ('$housetype', '$housenum', '$famnum', '$residenttype', '$gender', '$lname', '$ename', '$fname', '$mname', '$contact', '$year', '$dob', '$brn', '$brd', '$weight', '$height', '$nationality', '$bplace', '$marital', '$soloparent', '$permadd', '$Hnum', '$street', '$Brgy', '$municipality', '$province', '$osy', '$voter', '$ofw', '$country', '$job', '$skill', '$idnum', '$tin', '$pwd', '$target_file')";
+    
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    
+
     $conn->close();
 }
 ?>
-
 
 
 
@@ -270,13 +272,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          <label for="lname">Last Name</label>
          <input type="text" id="lname" name="lname"  placeholder="Last Name" required>
          <label for="ename">Ext.(Jr/Sr) </label>
-         <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" required><br>
+         <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" ><br>
 
 
          <label for="fname">First Name</label>
          <input type="text" id="fname" name="fname"  placeholder="First Name" required>
          <label for="mname">Middle Name</label>
-         <input type="text" id="mname" name="mname"  placeholder="Middle Name" required><br>
+         <input type="text" id="mname" name="mname"  placeholder="Middle Name" ><br>
 
 
          <label for="contact">Contact Number</label>
