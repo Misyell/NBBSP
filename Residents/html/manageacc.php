@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $housetype = $_POST['housetype'];
     $housenum = $_POST['housenum'];
     $famnum = $_POST['famnum'];
-    $residenttype = $_POST['residenttype'];
+    $residenttype = isset($_POST['residenttype']) ? $_POST['residenttype'] : '';
     $gender = $_POST['gender'];
     $lname = $_POST['lname'];
     $ename = $_POST['ename'];
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $skill = $_POST['skill'];
     $idnum = $_POST['idnum'];
     $tin = $_POST['tin'];
-    $pwd = $_POST['pwd'];
+    $pwd = isset($_POST['pwd']) ? implode(", ", $_POST['pwd']) : ''; // Serialize the array into a string
 
 
 
@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     VALUES ('$housetype', '$housenum', '$famnum', '$residenttype', '$gender', '$lname', '$ename', '$fname', '$mname', '$contact', '$year', '$dob', '$brn', '$brd', '$weight', '$height', '$nationality', '$bplace', '$marital', '$soloparent', '$permadd', '$Hnum', '$street', '$Brgy', '$municipality', '$province', '$osy', '$voter', '$ofw', '$country', '$job', '$skill', '$idnum', '$tin', '$pwd', '$target_file')";
     
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
+      echo '<script>alert("New record created successfully");</script>';
+   } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
