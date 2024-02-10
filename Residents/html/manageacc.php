@@ -1,3 +1,106 @@
+<?php
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Database connection parameters
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "db_barangay";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Get form data
+    $housetype = $_POST['housetype'];
+    $housenum = $_POST['housenum'];
+    $famnum = $_POST['famnum'];
+    $residenttype = $_POST['residenttype'];
+    $gender = $_POST['gender'];
+    $lname = $_POST['lname'];
+    $ename = $_POST['ename'];
+    $fname = $_POST['fname'];
+    $mname = $_POST['mname'];
+    $contact = $_POST['contact'];
+    $year = $_POST['year'];
+    $dob = $_POST['dob'];
+    $brn = $_POST['brn'];
+    $brd = $_POST['brd'];
+    $weight = $_POST['weight'];
+    $height = $_POST['height'];
+    $nationality = $_POST['nationality'];
+    $bplace = $_POST['bplace'];
+    $marital = $_POST['marital'];
+    $soloparent = $_POST['soloparent'];
+    $permadd = $_POST['permadd'];
+    $Hnum = $_POST['Hnum'];
+    $street = $_POST['street'];
+    $Brgy = $_POST['Brgy'];
+    $municipality = $_POST['municipality'];
+    $province = $_POST['province'];
+    $osy = $_POST['osy'];
+    $voter = $_POST['voter'];
+    $ofw = $_POST['ofw'];
+    $country = $_POST['country'];
+    $job = $_POST['job'];
+    $skill = $_POST['skill'];
+    $idnum = $_POST['idnum'];
+    $tin = $_POST['tin'];
+    $pwd = isset($_POST['pwd']) ? implode(", ", $_POST['pwd']) : ''; // Serialize the array into a string
+
+    // Handle file upload
+    $target_dir = "uploads/";
+    $myFile = $target_dir . basename($_FILES["myFile"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($myFile, PATHINFO_EXTENSION));
+    
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["myFile"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    
+    // Check file size
+    if ($_FILES["myFile"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+    
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    
+    // Insert into tblresident
+    $sql = "INSERT INTO tblresident (housetype, housenum, famnum, residenttype, gender, lname, ename, fname, mname, contact, year, dob, brn, brd, weight, height, nationality, bplace, marital, soloparent, permadd, Hnum, street, Brgy, municipality, province, osy, voter, ofw, country, job, skill, idnum, tin, pwd, myFile) 
+            VALUES ('$housetype', '$housenum', '$famnum', '$residenttype', '$gender', '$lname', '$ename', '$fname', '$mname', '$contact', '$year', '$dob', '$brn', '$brd', '$weight', '$height', '$nationality', '$bplace', '$marital', '$soloparent', '$permadd', '$Hnum', '$street', '$Brgy', '$municipality', '$province', '$osy', '$voter', '$ofw', '$country', '$job', '$skill', '$idnum', '$tin', '$pwd', '$myFile')";
+        
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    
+    $conn->close();
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -134,7 +237,7 @@
 
       <!--=============== MAIN ===============-->
       <main class="main-container" id="main">
-               <form action="" method="POST" >
+      <form action="" method="POST" enctype="multipart/form-data">
          <h2>Personal Information
          </h2>
          <hr style="
@@ -594,7 +697,7 @@
                </div>
             </div>
          </div>
-         <label for="changePasswordCheckbox">Change Password</label>
+    <!--     <label for="changePasswordCheckbox">Change Password</label>
         <input type="checkbox" id="changePasswordCheckbox">
 
         <div id="changePasswordForm" style="display: none;">
@@ -609,7 +712,7 @@
                 <label for="newPassword" s>New Password:</label>
                 <input type="password" id="newPassword" name="newPassword" s><br><br>
             </form>
-        </div>
+        </div> -->
    
 
          <div class="button-container">
