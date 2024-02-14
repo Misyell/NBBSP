@@ -176,7 +176,7 @@
                        <a href="../Reports/soloparent.php"><i class="fas fa-user-check"></i><span>Solo Parent</span></a>
                        <a href="../Reports/seniorlist.php"><i class="fas fa-stopwatch"></i><span>Senior List</span></a>
                        <a href="../Reports/deceasedlist.php"><i class="far fa-file-alt"></i><span>Deceased Resident</span></a>
-                       <a href="../Reports/cer&clearlist.php"><i class="fas fa-certificate"></i><span>Certificate</span></a>
+                       <a href="../Reports/cer_clearlist.php"><i class="fas fa-certificate"></i><span>Certificate</span></a>
                        <a href="../Reports/pastcaseslist.php"><i class="fas fa-step-backward"></i><span>Past Cases </span></a>
                        <a href="../Reports/blacklist.php"><i class="fas fa-exclamation-triangle"></i><span>Blocklist</span></a>
                      </div>                   

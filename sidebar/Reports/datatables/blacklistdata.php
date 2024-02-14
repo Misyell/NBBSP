@@ -40,7 +40,6 @@ if ($conn->connect_error) {
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
-					<th></th>
 					<th>House Number</th>
 					<th>Resident Type</th>
 					<th>First Name</th>

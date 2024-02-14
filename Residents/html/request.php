@@ -1,3 +1,4 @@
+<?php include 'if-else.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,10 +139,10 @@
       </div>
 
     <!--=============== MAIN ===============-->
-  <main class="main-container" id="main">
+<main class="main-container" id="main">
   <form action="" method="POST">
     <label for="formSelector">Select a Type of Document:</label>
-    <select id="formSelector" name="doctype">
+      <select id="formSelector" name="formSelector">
           <option value="">---Select----</option>
           <option value="barangayID">Barangay ID</option>
           <option value="barangayIndigency">Barangay Indigency</option>
@@ -160,13 +161,13 @@
         </select><br><br>
 
         <label for="amount">Amount</label>
-        <input type="num" name="am" id="amount"><br><br>
-    </form>
+        <input type="num" name="amount" id="amount"><br><br>
+    
        
         <div id="form">
           <div id="barangayID" class="form hidden">
             <h3>Barangay ID</h3>
-            <form action="id.html" method="POST">
+            <form action="" method="POST">
               <label for="lname">SurName</label>
               <input type="text" id="lname" name="lname"  placeholder="Last Name" required>
               <label for="fname">First Name</label>
@@ -174,7 +175,7 @@
               <label for="mname">Middle Name</label>
               <input type="text" id="mname" name="mname"  placeholder="Middle Name" required>
               <label for="ename">Ext.(Jr/Sr) </label>
-              <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" required><br>
+              <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" ><br>
               <label for="presentadd"> Present Address</label>
               <input type="text" id="presentadd" name="Hnum" placeholder="House Number" required>
               <input type="text" id="presentadd" name="street" placeholder=" Street " required>
@@ -212,11 +213,11 @@
               <div id="paypal-button-container"></div>
 
               <input type="submit" value="Submit">
-            </form>
-          </div>
+          </form>
+        </div>
           <div id="barangayIndigency" class="form hidden">
             <h3>Barangay Indigency</h3>
-            <form action="brgyindigency" method="POST">
+            <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="age">Age</label>
@@ -245,7 +246,7 @@
           </div>
           <div id="barangayCertificate" class="form hidden">
               <h3>Barangay Certificate</h3>
-              <form action="certificate.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="age">Age</label>
@@ -272,7 +273,7 @@
         </div>
             <div id="certificateJobseeker" class="form hidden">
               <h3>Certificate Jobseeker</h3>
-              <form action="jobseeker.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="age">Age</label>
@@ -286,13 +287,13 @@
             </div>
             <div id="oathTakingJobseeker" class="form hidden">
               <h3>Oath Taking Jobseeker</h3>
-              <form action="oath.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="age">Age</label>
                 <input type="num" id="age" name="age" placeholder="Enter age" required>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Full Address" required><br>
                 <label for="year">Years/Months of Residency on Brgy</label>
                 <input type="text" id="year" name="year" placeholder="Ex. 10 Years" required>
              
@@ -301,13 +302,13 @@
             </div>
             <div id="businessClearance" class="form hidden">
               <h3>Business Clearance</h3>
-              <form action="Business.html" method="POST">
+              <form action="" method="POST">
                 <label for="Busitrade">Type of Business/services</label>
                 <input type="text" id="Busitrade" name="Busitrade" placeholder="Enter Type of Business/services" required><br>
                 <label for="manager">Operator/Manager</label>
                 <input type="text" id="manager" name="manager" placeholder="Enter Operator/Manager" required><br>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Business Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Business Address" required><br>
                 <div id="paypal-button-container-1"></div>
 
                 <input type="submit" value="Submit">
@@ -315,13 +316,13 @@
             </div>
             <div id="businessClosure" class="form hidden">
               <h3>Business Clearance-Closure</h3>
-              <form action="closure.html" method="POST">
+              <form action="" method="POST">
                 <label for="Busitrade">Type of Business/services</label>
                 <input type="text" id="Busitrade" name="Busitrade" placeholder="Enter Type of Business/services" required><br>
                 <label for="manager">Operator/Manager</label>
                 <input type="text" id="manager" name="manager" placeholder="Enter Operator/Manager" required><br>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Business Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Business Address" required><br>
                 <div id="paypal-button-container-2"></div>
 
                 <input type="submit" value="Submit">
@@ -329,11 +330,11 @@
             </div>
             <div id="certificateLegalGuardian" class="form hidden">
               <h3>Certificate for Legal Guardian</h3>
-              <form action="legalguardian.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Full Address" required><br>
                 <label for="child">Name of the Child</label>
                 <input type="text" id="child" name="child" placeholder="Enter Full Name of the Child" required><br>
                 <label for="age">Age</label>
@@ -346,11 +347,11 @@
             </div>
             <div id="certificateNoBirth" class="form hidden">
               <h3>Certificate No Birth-certificate</h3>
-              <form action="nobirth.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Name of Guardian</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Name of Guardian" required><br>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Full Address" required><br>
                 <label for="child">Name of the Child</label>
                 <input type="text" id="child" name="child" placeholder="Enter Full Name of the Child" required><br>
                 <label for="dob">Date of Birth</label>
@@ -365,7 +366,7 @@
             </div>
             <div id="certificateBurial" class="form hidden">
               <h3>Certificate Burial</h3>
-              <form action="burial.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="age">Age</label>
@@ -379,7 +380,7 @@
                   <option value="widowed">Widowed</option>
                 </select><br>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Full Address" required><br>
                 <label for="Deceased">Name of Deceased</label>
                 <input type="text" id="Deceased" name="Deceased" placeholder="Enter Full Name of Deceased" required><br>
                 
@@ -389,11 +390,11 @@
             </div>
             <div id="fisheriesCertification" class="form hidden">
               <h3>Fisheries Certification</h3>
-              <form action="fisheries.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="add">Full Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Full Address" required><br>
                 <label for="age">Age</label>
                 <input type="num" id="age" name="age" placeholder="Enter age" required>
                 <label for="gender">Sex</label>
@@ -409,7 +410,7 @@
             </div>
             <div id="permitOccasion" class="form hidden">
               <h3>Permit Occasion</h3>
-              <form action="occasion.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="type">Type of Event</label>
@@ -417,7 +418,7 @@
                 <label for="dob">Time of event</label>
                 <input type="text" id="dob" name="dob" placeholder="Ex. 1pm to 10pm"required><br>
                 <label for="add">Location of Event</label>
-                <input type="text" id="add" name="add" placeholder="Enter Location of the Event" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Location of the Event" required><br>
                 <div id="paypal-button-container-4"></div>
 
                 <input type="submit" value="Submit">
@@ -426,13 +427,13 @@
            
             <div id="soloParent" class="form hidden">
               <h3>Solo Parent</h3>
-              <form action="solo.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="age">Age</label>
                 <input type="num" id="age" name="age" placeholder="Enter age" required>
                 <label for="add">Address</label>
-                <input type="text" id="add" name="add" placeholder="Enter Full Address" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Full Address" required><br>
                 <label for="dob">Solo Parent Since </label>
                 <input type="month" id="dob" name="dob" placeholder="MM/YYYY" required>
                 <label for="no">No. of Children</label>
@@ -443,13 +444,13 @@
             </div>
             <div id="travelPermit" class="form hidden">
               <h3>Travel Permit</h3>
-              <form action="travel.html" method="POST">
+              <form action="" method="POST">
                 <label for="requestname">Full Name</label>
                 <input type="text" id="requestname" name="name" placeholder="Enter Full Name" required><br>
                 <label for="weight">Load/Karga(kg)</label>
                 <input type="number" id="weight" name="weight" placeholder=" kg" required>
                 <label for="add">From(Location)</label>
-                <input type="text" id="add" name="add" placeholder="Enter Location" required><br>
+                <input type="text" id="add" name="address" placeholder="Enter Location" required><br>
                 <label for="desti">Destination</label>
                 <input type="text" id="desti" name="desti" placeholder="Enter Destination" required><br>
                 <label for="dob">Date of Departure </label>
@@ -468,7 +469,9 @@
       
         </div>
       
-  </main>
+  </form>  
+
+</main>
 
     <footer>
         Copyright &copy; <script>document.write(new Date().getFullYear())</script>websitename

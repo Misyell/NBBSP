@@ -719,6 +719,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
          <div class="button-container">
             <input type="submit" value="Submit">
+            <button><a href="changepass.html">Change Password</a></button>
          </div>
 
          </form>

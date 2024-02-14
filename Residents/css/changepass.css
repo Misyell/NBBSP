@@ -306,371 +306,34 @@ img {
 .main-container {
     grid-area: main;
     overflow-y: auto;
-    padding: 76px 22px;
-    padding-left: 311px;
+    padding: 110px 20px;
+    padding-left: 314px;
 }
-  center {
-    padding: 10px 0px 10px 0px;
-  }
-  
-                               
-  
-  input {
-    display: block;
-    margin: 25px 63px;
-    padding: 4px;
-    width: 131px;
-  
-    font-size: 14px;
-    border-top-style: none;
-      border-inline: none;
-  }
-  select {
-    display: inline;
-    margin-left: 30px;
-    margin-top: 18px;
-    padding: 4px;
-    font-size: 13px;
-    width: 207px;
-    border: 1px solid;
-    border-top-style: none;
-    border-inline: none;
-    margin-bottom: 12px;
-  }
-  
-  
-  /*Forms*/
-  
-  input[type="radio"] {
-    display: inline;
-    margin: 13px -47px 13px -11px;
-  }
-  input[type="checkbox"] {
-    display: inline;
-    margin-left: -45px;
-    margin-right: -57px;
-  }
-  input#Household_num {
-    display: inline;
-    margin: 0px 17px;
-  }
-  input#fam_num {
-    display: inline;
-    margin: 0px 17px;
-  }
-  
-  input#country {
-    display: inline;
-    margin: 0px 17px;
-  }
-  input#lname {
-    display: inline;
-    margin: 15px;
-    width: 250px;
-  }
-  input#ename {
-    display: inline;
-    margin: 10px;
-    width: 81px;
-  }
-  input#fname {
-    display: inline;
-    margin: 15px;
-    width: 250px;
-  }
-  input#mname {
-    display: inline;
-    margin: 10px;
-    width: 152px;
-  }
-  input#contact {
-    display: inline;
-    margin: 10px 26px;
-    width: 193px;
-  }
-  input#year {
-    display: inline;
-    margin: 10px 26px;
-    width: 193px;
-  }
-  input#dob {
-    display: inline;
-    margin: 10px;
-  }
-  input#brn {
-    display: inline;
-    margin: 10px;
-  }
-  input#brd {
-    display: inline;
-    margin: 10px;
-  }
-  input#weight {
-    display: inline;
-    margin: 10px;
-    width: 50px;
-  }
-  input#height {
-    display: inline;
-    margin: 10px;
-    width: 50px;
-  }
-  input#citizen {
-    display: inline;
-    margin: 10px;
-    width: 150px;
-  }
-  input#bplace {
-    display: inline;
-    margin: 10px;
-    width: 150px;
-  }
-  input#presentadd {
-    display: inline;
-    margin: 12px;
-    margin-top: 13px;
-    width: 152px;
-  }
-  input#job {
-    display: inline;
-    margin: 10px;
-    width: 180px;
-  }
-  input#skill {
-    display: inline;
-    margin: 10px;
-    width: 180px;
-  }
-  input#idnum {
-    display: inline;
-    margin: 10px;
-    width: 180px;
-  }
-  input#tin {
-    display: inline;
-    margin: 10px;
-    width: 180px;
-  }
-  input#email {
-    display: inline;
-    margin: 10px 26px;
-    width: 230px;
-  }
-  input#barangay_cap {
-    display: inline;
-    margin: 10px 26px;
-    width: 400px;
-  }
-  input#brgycoun {
-    display: inline;
-    margin: 12px 8px;
-    width: 389px;
-  }
-  input#personalbg {
-    display: inline;
-    margin: 10px 26px;
-    width: 400px;
-  }
-  input#name {
-    display: inline;
-    margin: 10px 26px;
-    width: 400px;
-  }
-  input#position {
-    display: inline;
-    margin: 13px 26px;
-    width: 400px;
-  }
-  select[name="status"] {
-    display: inline;
-    margin: 10px;
-    width: 135px;
-  }
-  label[for="voter"] {
-    margin-left: 64px;
-  }
-  
-  select[name="gender"] {
-    display: inline;
-    margin: 10px;
-    width: 141px;
-  }
-  h5 {
-    display: inline;
-    margin-right: 153px;
-  }
-  
-  input#boys {
-    display: inline;
-    margin: 14px;
-    width: 200px;
-  }
-  input#girls{
-    display: inline;
-    margin: 14px;
-    width: 200px;
-  }
-  input#pwd{
-    display: inline;
-    margin: 14px;
-    width: 200px;
-  }
-  input#senior{
-    display: inline;
-    margin: 14px;
-    width: 200px;
-  }
-  input#age-a{
-    display: inline;
-    margin: 14px;
-    width: 300px;
-  }
-  input#age-b{
-    display: inline;
-    margin: 14px;
-    width: 300px;
-  }
-  input#age-c{
-    display: inline;
-    margin: 14px;
-    width: 300px;
-  }
-  label {
-  
-    font-weight: 600;
-  
-  }
-  .column-pwd {
-    flex: 0 0 33.33%;
-    margin: -13px;
-  }
-  h2 {
-    margin: 10px;
-  }
-  h4 {
-    margin: 16px 0px 0px 156px;
-  }
-  .checkbox-wrapper {
-    display: flex;
-      align-items: center;
-      margin: -10px 38px;
-  }
-  .checkbox {
-    margin-right: 5px;
-  }
-  
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .drop-zone {
-    width: 175px;
-    height: 183px;
-    padding: 0px;
-    display: inline;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: "Quicksand", sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    cursor: pointer;
-    color: #cccccc;
-    border: 2px dashed #246dec;
-    border-radius: 10px;
-    margin: -229px 0px 0px 775px;
-  }
-  
-  .drop-zone--over {
-      border-style: solid;
-  }
-  
-  .drop-zone__input {
-      display: none;
-  }
-  
-  .drop-zone__thumb {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: #cccccc;
-      background-size: cover;
-      position: relative;
-  }
-  
-  .drop-zone__thumb::after {
-    content: attr(data-label);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 2px 0;
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.75);
-    font-size: 11px;
-    text-align: start;
-  }
-  .button-container {
-    display: inline-flex;
-    margin-left: 307px;
-    margin-top: 10px;
-  }
-  .button-container-1 {
-    display: inline-flex;
-    margin-left: 0px;;
-    margin-top: 10px;
-  }
-  
-  .button-container,
-  .button-container-1
-   input {
-    padding:13px 5px;
-  
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-  }
-  .button-container-1
-   input {
-    padding:13px 5px;
-    background-color: #246dec;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-  }
-  input[type="submit"] {
-    border: none;
-    background: #246dec;
-    display: block;
-    border-radius: 7px;
-    height: 38px;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    margin: 12px 0px 10px 347px;
-    padding: 11px;
-  }
-  form .button-container button{  
-    border: none;
-    background: #246dec;
-    display: block;
-    border-radius: 7px;
-    height: 38px;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    margin: 12px 0px 10px 7px;
-    padding: 11px;
-  }
-  form .button-container button a {
-    color: white;
+.title {
+  text-align: center;
+  padding: 21px;
+  height: 78px;
+  border-radius: 14px;
+  background: #80aaf4;
+  color: white;
+  margin-top: -30px;
 }
+body{
+    margin-top:20px;
+  }
+.responsive {
+    max-width: 150px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+input#myFile {
+  margin-left: 265px;
+}
+
+
 
 
 /*=============== BREAKPOINTS ===============*/
@@ -689,23 +352,39 @@ img {
     margin: 0;
   }
   .main-container {
-
-    padding-left: 14px;
+    padding: 75px 0px;
+    padding-left: 5px;
 }
-.drop-zone {
-    display: inline-grid;
-    position: relative;
-    margin: -229px 0 111px 100px;
-    top: 83px;
+.nav-2 ul {
+
+  width: 100%;
+  text-align: center;
 }
-input[type="submit"] {
-
-    margin: 12px 0px 10px 50px;
-
+.nav-2 ul li {
+  margin: 0 10px;
 }
-.container {
-    display: contents;
-
+.nav-2 ul li a {
+  font-size: 11px;
+}
+.salaysay {
+  padding: 15px 5px 2px 0px;
+  height: 511px;
+}
+.kalagayan {
+  padding: 15px 5px 2px 0px;
+  height: 366px;
+}
+.bisyon {
+  padding: 15px 5px 2px 0px;
+  height: 170px;
+}
+.misyon {
+  padding: 15px 5px 2px 0px;
+  height: 206px;
+}
+.core {
+  padding: 15px 5px 2px 0px;
+  height: 45px;
 }
 }
 
@@ -819,7 +498,7 @@ input[type="submit"] {
 
   /* Add padding main */
   .main-pd {
-    padding-left: 120px;
+    padding-left: 127px;
   }
 }
 footer {

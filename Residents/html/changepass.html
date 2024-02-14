@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="../css/changepass.css">
+
+      <title>NBBSP</title>
+        <meta name="description" content="barangay management information system" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#03a9f4" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@site" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:title" content="barangay management information system" />
+        <meta name="twitter:description" content="barangay management information system" />
+        <meta name="twitter:image" content="" />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Barangay management information system" />
+        <meta property="og:description" content="Barangay management information system" />
+        <meta property="og:site_name" content="My App" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+
+        <link rel="manifest" href="../html/manifest.json" />
+        <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
+
+        <!-- Apple touch icon -->
+        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
+    </head>
+
+
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker
+                        .register("../html/serviceWorker.js")
+                        .then((registration) => {
+                            console.log("SW registration successful");
+                        });
+                });
+            }
+        </script>
+
+   
+   <body>
+   <div class="wrapper">
+      <!-- Sidebar bg -->
+      <img src="assets/img/sidebar-bg.jpg" alt="sidebar img" class="bg-image">
+
+      <!--=============== HEADER ===============-->
+      <header class="header">
+         <div class="header__container container">
+            <div class="header__toggle" id="header-toggle">
+               <i class="ri-menu-line"></i>
+            </div>
+
+            
+      </header>
+
+      <!--=============== SIDEBAR ===============-->
+      <div class="sidebar" id="sidebar">
+         <nav class="sidebar__container">
+            <div class="sidebar__logo">
+               <img src="../img/logo-modified.png" alt="" class="sidebar__logo-img">
+            </div>
+
+            <div class="sidebar__content">
+              
+               <div class="sidebar__list">
+                  <a href="./profile.html" class="sidebar__link active-link">
+                     <i class="ri-user-line"></i>
+                     <span class="sidebar__link-name">Profile</span>
+                     <span class="sidebar__link-floating">Profile</span>
+                  </a>
+
+                  <a href="./manageacc.php" class="sidebar__link">
+                     <i class="ri-registered-line"></i>
+                     <span class="sidebar__link-name">Manage Account</span>
+                     <span class="sidebar__link-floating">Manage Account</span>
+                  </a>
+                  <a href="./request.php" class="sidebar__link">
+                     <i class="ri-file-edit-line"></i>
+                     <span class="sidebar__link-name">Request</span>
+                     <span class="sidebar__link-floating">Request</span>
+                  </a>
+
+                  <a href="./complaint.php" class="sidebar__link">
+                     <i class="ri-archive-fill"></i>
+                     <span class="sidebar__link-name">Complaint Box</span>
+                     <span class="sidebar__link-floating">Complaint Box</span>
+                  </a>
+               </div>
+
+              
+               <div class="sidebar__list">
+                  <a href="./aboutus/AboutUs.html" class="sidebar__link">
+                     <i class="ri-information-fill"></i>
+                     <span class="sidebar__link-name">About Us</span>
+                     <span class="sidebar__link-floating">About Us</span>
+                  </a>
+
+
+                  <a href="./index.html" class="sidebar__link">
+                     <i class="ri-logout-box-r-line"></i>
+                     <span class="sidebar__link-name">Logout</span>
+                     <span class="sidebar__link-floating">Logout</span>
+                  </a>
+               </div>
+            </div>
+
+            <div class="sidebar__account">
+               <img src="../img/user.png" alt="sidebar image" class="sidebar__perfil">
+
+               <div class="sidebar__names">
+                  <h3 class="sidebar__name">Will Lens</h3>
+                  <span class="sidebar__email">willens@email.com</span>
+               </div>
+
+               <i class="ri-arrow-right-s-line"></i>
+            </div>
+         </nav>
+      </div>
+
+
+      <!--=============== MAIN ===============-->
+      <main class="main-container" id="main">
+
+      <div class="title"> 
+            <h1>Edit Profile</h1></div>
+            <br><br>
+            <p style="text-align: center;font-size: x-large; color: black; font-weight: 450;"> Christian Angelo Balsomo</p>
+            <p style="font: 200; text-align: center;"> christianangelobalsomo@gmail.com </p>
+            
+              <div class="row">
+                 <!-- left column -->
+                 <div class="col-md-3">
+                   <div class="text-center">
+                     <img src="../img/profile-icon.png" class="responsive" alt="avatar">
+                     <br>
+                 </div>
+                 
+                 <hr style="
+                        border: 1px solid #171922;
+                        margin: 15px -1px -65px;">
+
+                 <!-- edit form column -->
+
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+
+                   <h2 style="color: rgb(119, 134, 172); margin: 5px 10px 30px;">CHANGE PASSWORD</h2>
+                   
+                   <form class="form-horizontal" role="form" style="text-align:left;">
+
+                     <p style="color: #171922; margin-left: 10px;"> Please enter below the required informations: </p> <br>
+                     <label for="username" style="color: #171922; margin-left: 10px;">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                     <input type="text" id="uname" name="uname" placeholder="JDelacruz15" style="margin-left: 13px;">
+                     <br><br>
+                     <label for="Password" style="color: #171922; margin-left: 10px;">New Password:&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                     <input type="password" id="pw" name="pw" style="margin-left: 13px;">
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <br><br>
+                     <label for="NewPassword" style="color: #171922; margin-left: 10px;">Confirm password: &nbsp;&nbsp; </label>
+                     <input type="password" id="pw" name="pw" style="margin-left: 13px;">
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+                     <input type="submit" value="Change Password" style="color: white;margin-left: 10px;height: 31px;border-radius: 10px;background: #246DEC;">
+                     <br><br>
+
+                   </form>
+                 </div>
+             </div>
+           <hr>
+         
+      
+
+      </main>
+
+      <footer>
+         Copyright &copy; <script>document.write(new Date().getFullYear())</script>websitename
+      </footer>   
+   </div>   
+      <!--=============== MAIN JS ===============-->
+      <script src="../js/sidebar.js"></script>
+   </body>
+</html>
