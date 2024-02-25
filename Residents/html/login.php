@@ -1,10 +1,11 @@
+<!-- table name- 	userusers -->
 <?php
-$error_message = ""; // Initialize error message variable
-$show_signup = true; // Initialize $show_signup variable
+$error_message = ""; 
+$show_signup = true; 
 
-// Check if the form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Establish a connection to your database
+  
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -80,7 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Close database connection
     $conn->close();
 }
 ?>
@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="submit" value="Login" class="btn solid" name="signin" />
 
             </form>
-            <?php if ($show_signup) { ?> <!-- Show sign-up section based on flag -->
+            <?php if ($show_signup) { ?> 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="sign-up-form">
                                <h2 class="title">Sign up</h2>
                 <?php if (!empty($error_message)) { ?>

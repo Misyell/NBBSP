@@ -1,3 +1,4 @@
+<!-- table name- 	tblresident -->
 <?php
     $housetype = "";
     $housenum = "";

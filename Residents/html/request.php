@@ -165,7 +165,7 @@
     
        
         <div id="form">
-          <div id="barangayID" class="form hidden">
+          <div id="barangayID" class="form hidden"><!-- table name- bid -->
             <h3>Barangay ID</h3>
             <form action="" method="POST">
               <label for="lname">SurName</label>
@@ -215,7 +215,7 @@
               <input type="submit" value="Submit">
           </form>
         </div>
-          <div id="barangayIndigency" class="form hidden">
+          <div id="barangayIndigency" class="form hidden"><!-- table name- 	brgyindigency -->
             <h3>Barangay Indigency</h3>
             <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -244,7 +244,7 @@
               <input type="submit" value="Submit">
             </form>
           </div>
-          <div id="barangayCertificate" class="form hidden">
+          <div id="barangayCertificate" class="form hidden"><!-- table name- 	brgycertificate -->
               <h3>Barangay Certificate</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -271,7 +271,7 @@
               <input type="submit" value="Submit">
             </form>            
         </div>
-            <div id="certificateJobseeker" class="form hidden">
+            <div id="certificateJobseeker" class="form hidden"><!-- table name- 	brgycertjob -->
               <h3>Certificate Jobseeker</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -285,7 +285,7 @@
               <input type="submit" value="Submit">
             </form>   
             </div>
-            <div id="oathTakingJobseeker" class="form hidden">
+            <div id="oathTakingJobseeker" class="form hidden"><!-- table name- 		brgyoathjob -->
               <h3>Oath Taking Jobseeker</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -300,7 +300,7 @@
               <input type="submit" value="Submit">
             </form>  
             </div>
-            <div id="businessClearance" class="form hidden">
+            <div id="businessClearance" class="form hidden"><!-- table name- 		brgybusiclear -->
               <h3>Business Clearance</h3>
               <form action="" method="POST">
                 <label for="Busitrade">Type of Business/services</label>
@@ -314,7 +314,7 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="businessClosure" class="form hidden">
+            <div id="businessClosure" class="form hidden"><!-- table name- 	brgybusiclos -->
               <h3>Business Clearance-Closure</h3>
               <form action="" method="POST">
                 <label for="Busitrade">Type of Business/services</label>
@@ -328,7 +328,7 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="certificateLegalGuardian" class="form hidden">
+            <div id="certificateLegalGuardian" class="form hidden"><!-- table name- 	brgycertlegalg -->
               <h3>Certificate for Legal Guardian</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -345,7 +345,7 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="certificateNoBirth" class="form hidden">
+            <div id="certificateNoBirth" class="form hidden"><!-- table name- 	brgycertnobirth -->
               <h3>Certificate No Birth-certificate</h3>
               <form action="" method="POST">
                 <label for="requestname">Name of Guardian</label>
@@ -364,7 +364,7 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="certificateBurial" class="form hidden">
+            <div id="certificateBurial" class="form hidden"><!-- table name- 		brgycertburial -->
               <h3>Certificate Burial</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -388,7 +388,7 @@
                <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="fisheriesCertification" class="form hidden">
+            <div id="fisheriesCertification" class="form hidden"> <!-- table name- 	brgycertfish -->
               <h3>Fisheries Certification</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -408,7 +408,7 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="permitOccasion" class="form hidden">
+            <div id="permitOccasion" class="form hidden"><!-- table name- 		brgypermocc -->
               <h3>Permit Occasion</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -425,7 +425,7 @@
               </form>
             </div>
            
-            <div id="soloParent" class="form hidden">
+            <div id="soloParent" class="form hidden"><!-- table name- 		brgysoloparent -->
               <h3>Solo Parent</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
@@ -442,7 +442,7 @@
                 <input type="submit" value="Submit">
               </form>
             </div>
-            <div id="travelPermit" class="form hidden">
+            <div id="travelPermit" class="form hidden"><!-- table name- 	brgytravelpirm -->
               <h3>Travel Permit</h3>
               <form action="" method="POST">
                 <label for="requestname">Full Name</label>
