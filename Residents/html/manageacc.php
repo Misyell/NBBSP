@@ -1,4 +1,39 @@
 <?php
+    $housetype = "";
+    $housenum = "";
+    $famnum = "";
+    $residenttype ="";
+    $gender = "";
+    $lname = "";
+    $ename = "";
+    $fname = "";
+    $mname = "";
+    $phone = "";
+    $year = "";
+    $bday = "";
+    $brn = "";
+    $brd = "";
+    $weight = "";
+    $height = "";
+    $nationality = "";
+    $bplace = "";
+    $marital = "";
+    $soloparent = "";
+    $permadd = "";
+    $Hnum = "";
+    $street = "";
+    $Brgy = "";
+    $municipality = "";
+    $province = "";
+    $osy = "";
+    $voter = "";
+    $ofw = "";
+    $country = "";
+    $job = "";
+    $skill = "";
+    $idnum = "";
+    $tin = "";
+    $pwd = "";
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database connection parameters
@@ -25,9 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ename = $_POST['ename'];
     $fname = $_POST['fname'];
     $mname = $_POST['mname'];
-    $contact = $_POST['contact'];
+    $phone = $_POST['phone'];
     $year = $_POST['year'];
-    $dob = $_POST['dob'];
+    $bday = $_POST['bday'];
     $brn = $_POST['brn'];
     $brd = $_POST['brd'];
     $weight = $_POST['weight'];
@@ -95,6 +130,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+
+    $sql = "SELECT * FROM tblresident WHERE id = $id"; // Assuming you want to fetch data based on an ID
+   $result = $conn->query($sql);
+
+   if ($result->num_rows > 0) {
+      // Step 3: Fetch the data from the result set
+      $row = $result->fetch_assoc();
+
+      // Step 4: Use the fetched data to populate the form fields
+      $housetype = $row["housetype"];
+      $housenum = $row["housenum"];
+      $famnum = $row["famnum"];
+      $residenttype = $row["residenttype"];
+      $gender = $row["gender"];
+      $lname = $row["lname"];
+      $ename = $row["ename"];
+      $fname = $row["fname"];
+      $mname = $row["mname"];
+      $phone = $row["phone"];
+      $year = $row["year"];
+      $bday = $row["bday"];
+      $brn = $row["brn"];
+      $brd = $row["brd"];
+      $weight = $row["weight"];
+      $height = $row["height"];
+      $nationality = $row["nationality"];
+      $bplace = $row["bplace"];
+      $marital = $row["marital"];
+      $soloparent = $row["soloparent"];
+      $permadd = $row["permadd"];
+      $Hnum = $row["Hnum"];
+      $street = $row["street"];
+      $Brgy = $row["Brgy"];
+      $municipality = $row["municipality"];
+      $province = $row["province"];
+      $osy = $row["osy"];
+      $voter = $row["voter"];
+      $ofw = $row["ofw"];
+      $country = $row["country"];
+      $job = $row["job"];
+      $skill = $row["skill"];
+      $idnum = $row["idnum"];
+      $tin = $row["tin"];
+      $pwd = $row["pwd"];
+     
+      // Repeat for other form fields
+   } else {
+      echo "0 results";
+   }
+
 
     $conn->close();
 }
@@ -182,7 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="sidebar__content">
               
                <div class="sidebar__list">
-                  <a href="./profile.html" class="sidebar__link active-link">
+                  <a href="./profile.php" class="sidebar__link active-link">
                      <i class="ri-user-line"></i>
                      <span class="sidebar__link-name">Profile</span>
                      <span class="sidebar__link-floating">Profile</span>
@@ -239,7 +324,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <!--=============== MAIN ===============-->
       <main class="main-container" id="main">
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
          <h2>Personal Information
          </h2>
          <hr style="
@@ -247,51 +332,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          margin: 2px -1px;
          ">
          <label for="housetype"> Residential House Type </label>
-         <input type="radio" name="housetype" value="Owner" required> Owner
-         <input type="radio" name="housetype" value="Sharer" required> Sharer
-         <input type="radio" name="housetype" value="Renter"required> Renter 
+         <input type="radio" name="housetype" value="Owner"  <?php if(isset($housetype) && $housetype == "Owner") echo "checked"; ?> required> Owner
+         <input type="radio" name="housetype" value="Sharer"  <?php if(isset($housetype) && $housetype == "Sharer") echo "checked"; ?> required> Sharer
+         <input type="radio" name="housetype" value="Renter"  <?php if(isset($housetype) && $housetype == "Renter") echo "checked"; ?>required> Renter 
 
          <br>
 
          <label for="housenum">Household Number</label>
-         <input type="text" id="Household_num" name="housenum"  placeholder="HN831BP21996" required>
+         <input type="text" id="Household_num" name="housenum"  placeholder="HN831BP21996" value="<?php echo $housenum; ?>" required>
 
          <label for="famnum">Family Number</label>
-         <input type="text" id="fam_num" name="famnum"  placeholder="fam831BP21996" required>
+         <input type="text" id="fam_num" name="famnum"  placeholder="fam831BP21996" value="<?php echo $famnum; ?>"required>
          <br>
          <label for="residenttype"> Resident Type</label>
-         <input type="checkbox" name="residenttype" value="primary">  <h5>PRIMARY</h5>
+         <input type="checkbox" name="residenttype" value="primary"  <?php if(isset($residenttype) && $residenttype == "primary") echo "checked"; ?>> <h5>PRIMARY</h5>
 
          <label for="gender">Gender</label>
          <select name="gender" required>
          <option> -Select- </option>
-         <option value="male ">Male</option>
-         <option value="female">Female</option>
+         <option value="male" <?php if(isset($gender) && $gender == "male") echo "selected"; ?>>Male</option>
+         <option value="female" <?php if(isset($gender) && $gender == "female") echo "selected"; ?>>Female</option>
          </select><br>
 
          <label for="lname">Last Name</label>
-         <input type="text" id="lname" name="lname"  placeholder="Last Name" required>
+         <input type="text" id="lname" name="lname"  placeholder="Last Name" value="<?php echo $lname; ?>" required>
          <label for="ename">Ext.(Jr/Sr) </label>
-         <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" ><br>
+         <input type="text" id="ename" name="ename"  placeholder="(Jr/Sr)" value="<?php echo $ename; ?>" ><br>
 
 
          <label for="fname">First Name</label>
-         <input type="text" id="fname" name="fname"  placeholder="First Name" required>
+         <input type="text" id="fname" name="fname"  placeholder="First Name" value="<?php echo $fname; ?>" required>
          <label for="mname">Middle Name</label>
-         <input type="text" id="mname" name="mname"  placeholder="Middle Name" ><br>
+         <input type="text" id="mname" name="mname"  placeholder="Middle Name" value="<?php echo $mname; ?>" ><br>
 
 
          <label for="contact">Contact Number</label>
-         <input type="number" id="contact" name="contact" required placeholder="Enter your phone number"required>
+         <input type="number" id="contact" name="phone"  placeholder="Enter your phone number" value="<?php echo $phone; ?>" required>
 
          <label for="year">Years of Residency </label>
-         <input type="number" id="year" name="year" required placeholder="Enter your Years of Residency"required>
+         <input type="number" id="year" name="year"  placeholder="Enter your Years of Residency" value="<?php echo $year; ?>" required>
          <br>
 
 
          <div class="drop-zone">
             <span class="drop-zone__prompt">Drop file here or click to upload</span>
-            <input type="file" name="myFile" class="drop-zone__input" accept=".jpg, .jpeg, .png" required>
+            <input type="file" name="myFile" class="drop-zone__input" accept=".jpg, .jpeg, .png" value="<?php echo isset($myFile) ? htmlspecialchars($myFile) : ''; ?>" required>
          </div> 
 
 
@@ -303,38 +388,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          ">
 
          <label for="dob">Date of Birth</label>
-         <input type="date" id="dob" name="dob" required>
+         <input type="date" id="dob" name="bday" value="<?php echo $bday; ?>" required>
 
          <label for="brn">Birth Registration Number</label>
-         <input type="text" id="brn" name="brn" placeholder="HN831BP21996" required>
+         <input type="text" id="brn" name="brn" placeholder="HN831BP21996" value="<?php echo $brn; ?>" required>
 
          <label for="brd">Birth Registration Date</label>
-         <input type="date" id="brd" name="brd" required><br>
+         <input type="date" id="brd" name="brd" value="<?php echo $brd; ?>" required><br>
 
          <label for="weight">Weight(kg)</label>
-         <input type="number" id="weight" name="weight" placeholder=" kg" required>
+         <input type="number" id="weight" name="weight" placeholder=" kg" value="<?php echo $weight; ?>" required>
 
          <label for="height">Height(ft)</label>
-         <input type="number" id="height" name="height" placeholder="ft" required>
+         <input type="number" id="height" name="height" placeholder="ft" value="<?php echo $height; ?>" required>
 
          <label for="nationality">Nationality</label>
-         <input type="text" id="citizen" name="nationality" placeholder="ex. Filipino" required><br>
+         <input type="text" id="citizen" name="nationality" placeholder="ex. Filipino" value="<?php echo $nationality; ?>" required><br>
 
          <label for="bplace">Birth Place</label>
-         <input type="text" id="bplace" name="bplace" placeholder="Municipality" required>
+         <input type="text" id="bplace" name="bplace" placeholder="Municipality" value="<?php echo $bplace; ?>" required>
 
          <label for="status">Marital Status</label>
          <select name="marital" required>
             <option>-select-</option>
-         <option value="single ">Single</option>
-         <option value="married">Married</option>
-         <option value="separated">Legally Separated</option>
-         <option value="widowed">Widowed</option>
+         <option value="single " <?php if(isset($marital) && $marital == "single") echo "selected"; ?>>Single</option>
+         <option value="married" <?php if(isset($marital) && $marital == "married") echo "selected"; ?>>Married</option>
+         <option value="separated" <?php if(isset($marital) && $marital == "separated") echo "selected"; ?>>Legally Separated</option>
+         <option value="widowed" <?php if(isset($marital) && $marital == "widowed") echo "selected"; ?>>>Widowed</option>
          </select>
 
          <label for="soloparent"> Solo Parent </label>
-         <input type="radio" name="soloparent" value="yes" required> Yes
-         <input type="radio" name="soloparent" value="no" required > No
+         <input type="radio" name="soloparent" value="yes"<?php if(isset($soloparent) && $soloparent == "yes") echo "checked"; ?> required> Yes
+         <input type="radio" name="soloparent" value="no"<?php if(isset($soloparent) && $soloparent == "no") echo "checked"; ?> required > No
 
 
          <hr style="
@@ -348,16 +433,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          margin: 2px -1px;
          ">
          <label for="permadd"> Is present address is same as permanent address?</label>
-         <input type="radio" name="permadd" value="yes" required> Yes
-         <input type="radio" name="permadd" value="no" required> No
+         <input type="radio" name="permadd" value="yes" value="yes"<?php if(isset($permadd) && $permadd == "yes") echo "checked"; ?> required> Yes
+         <input type="radio" name="permadd" value="no" value="no"<?php if(isset($permadd) && $permadd == "no") echo "checked"; ?> required> No
          <br>
 
          <label for="presentadd"> Present Address</label>
-         <input type="text" id="presentadd" name="Hnum" placeholder="House Number" required>
-         <input type="text" id="presentadd" name="street" placeholder=" Street " required>
-         <input type="text" id="presentadd" name="Brgy" placeholder=" Barangay" required>
-         <input type="text" id="presentadd" name="municipality" placeholder="Municipality" required>
-         <input type="text" id="presentadd" name="province" placeholder="Province" required><br>
+         <input type="text" id="presentadd" name="Hnum" placeholder="House Number" value="<?php echo $Hnum; ?>" required>
+         <input type="text" id="presentadd" name="street" placeholder=" Street " value="<?php echo $street; ?>" required>
+         <input type="text" id="presentadd" name="Brgy" placeholder=" Barangay" value="<?php echo $Brgy; ?>" required>
+         <input type="text" id="presentadd" name="municipality" placeholder="Municipality" value="<?php echo $municipality; ?>" required>
+         <input type="text" id="presentadd" name="province" placeholder="Province" value="<?php echo $province; ?>" required><br>
 
 
 
@@ -374,19 +459,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          ">
 
          <label for="osy"> Out of School Youth </label>
-         <input type="radio" name="osy" value="Yes" required> Yes
-         <input type="radio" name="osy" value="No" required> No 
+         <input type="radio" name="osy" value="Yes"<?php if(isset($osy) && $osy == "yes") echo "checked"; ?> required> Yes
+         <input type="radio" name="osy" value="No"<?php if(isset($osy) && $osy == "no") echo "checked"; ?> required> No 
 
          <label for="voter"> Registered Voter </label>
-         <input type="radio" name="voter" value="yes" required> Yes 
-         <input type="radio" name="voter" value="no" required> No <br>
+         <input type="radio" name="voter" value="yes"<?php if(isset($voter) && $voter == "yes") echo "checked"; ?> required> Yes 
+         <input type="radio" name="voter" value="no"<?php if(isset($voter) && $voter == "no") echo "checked"; ?> required> No <br>
          <br>
 
          <label >OFW</label>
          <select id="ofw" name="ofw" >
             <option>-select-</option>
-         <option value="yes">Yes</option>
-         <option value="no">No</option>
+         <option value="yes" <?php if(isset($ofw) && $ofw == "yes") echo "selected"; ?>>Yes</option>
+         <option value="no" <?php if(isset($ofw) && $ofw == "no") echo "selected"; ?>>No</option>
          </select>
 
 
@@ -644,82 +729,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
          <label for="job">Occupation</label>
-         <input type="text" id="job" name="job" placeholder="Occupation" required>
+         <input type="text" id="job" name="job" placeholder="Occupation" value="<?php echo $job; ?>" required>
 
          <label for="skill">Skills</label>
-         <input type="text" id="skill" name="skill" placeholder="Skill" required><br>
+         <input type="text" id="skill" name="skill" placeholder="Skill" value="<?php echo $skill; ?>" required><br>
 
          <label for="idnum">SSS/UMID Number</label>
-         <input type="text" id="idnum" name="idnum" placeholder="SSS/UMID" required>
+         <input type="text" id="idnum" name="idnum" placeholder="SSS/UMID" value="<?php echo $idnum; ?>" required>
          <label for="tin">TIN Number</label>
-         <input type="text" id="tin" name="tin" placeholder="TIN Number" required><br>
+         <input type="text" id="tin" name="tin" placeholder="TIN Number" value="<?php echo $tin; ?>" required><br>
 
          <label for="pwd">Person With Disability</label> <br>
          <div class="container">
             <div class="column-pwd">
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Psychosocial Disability">
-               <label for="Psychosocial Disability">Psychosocial Disability</label>
+                     <input type="checkbox" name="pwd[]" value="Psychosocial Disability" <?php if(in_array("Psychosocial Disability", $pwd)) echo "checked"; ?>>
+                     <label for="Psychosocial Disability">Psychosocial Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Mental Disability">
-               <label for="Mental Disability">Mental Disability</label>
+                     <input type="checkbox" name="pwd[]" value="Mental Disability" <?php if(in_array("Mental Disability", $pwd)) echo "checked"; ?>>
+                     <label for="Mental Disability">Mental Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Hearing Disability">
-               <label for="Hearing Disability">Hearing Disability</label>
-               </div>
-            </div>
-            <div class="column-pwd">
-               <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Chronic Illness" >
-               <label for="Chronic Illness">Chronic Illness</label>
-               </div>
-               <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Visual Disability">
-               <label for="Visual Disability">Visual Disability</label>
-               </div>
-               <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Speech Impairment">
-               <label for="Speech Impairment">Speech Impairment</label>
+                     <input type="checkbox" name="pwd[]" value="Hearing Disability" <?php if(in_array("Hearing Disability", $pwd)) echo "checked"; ?>>
+                     <label for="Hearing Disability">Hearing Disability</label>
                </div>
             </div>
             <div class="column-pwd">
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Learning Ability" >
-               <label for="Learning Ability">Learning Ability</label>
+                     <input type="checkbox" name="pwd[]" value="Chronic Illness" <?php if(in_array("Chronic Illness", $pwd)) echo "checked"; ?>>
+                     <label for="Chronic Illness">Chronic Illness</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Orthopedic Disability" >
-               <label for="Orthopedic Disability">Orthopedic Disability</label>
+                     <input type="checkbox" name="pwd[]" value="Visual Disability" <?php if(in_array("Visual Disability", $pwd)) echo "checked"; ?>>
+                     <label for="Visual Disability">Visual Disability</label>
                </div>
                <div class="checkbox-wrapper">
-               <input type="checkbox" name="pwd[]" value="Others" n>
-               <label for="Others">Others</label>
+                     <input type="checkbox" name="pwd[]" value="Speech Impairment" <?php if(in_array("Speech Impairment", $pwd)) echo "checked"; ?>>
+                     <label for="Speech Impairment">Speech Impairment</label>
+               </div>
+            </div>
+            <div class="column-pwd">
+               <div class="checkbox-wrapper">
+                     <input type="checkbox" name="pwd[]" value="Learning Ability" <?php if(in_array("Learning Ability", $pwd)) echo "checked"; ?>>
+                     <label for="Learning Ability">Learning Ability</label>
+               </div>
+               <div class="checkbox-wrapper">
+                     <input type="checkbox" name="pwd[]" value="Orthopedic Disability" <?php if(in_array("Orthopedic Disability", $pwd)) echo "checked"; ?>>
+                     <label for="Orthopedic Disability">Orthopedic Disability</label>
+               </div>
+               <div class="checkbox-wrapper">
+                     <input type="checkbox" name="pwd[]" value="Others" <?php if(in_array("Others", $pwd)) echo "checked"; ?>>
+                     <label for="Others">Others</label>
                </div>
             </div>
          </div>
-    <!--     <label for="changePasswordCheckbox">Change Password</label>
-        <input type="checkbox" id="changePasswordCheckbox">
-
-        <div id="changePasswordForm" style="display: none;">
-            <hr style="border: 2px solid #246dec; margin: 2px -1px;">
-            <h2>CHANGE PASSWORD</h2>
-            <form class="form-horizontal" role="form" style="text-align:left;">
-                <p style="color: #171922; margin-left: 10px;">Please enter below the required information:</p> <br>
-                <label for="email" >Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter Email" ><br><br>
-                <label for="currentPassword">Current Password:</label>
-                <input type="password" id="currentPassword" name="currentPassword" ><br><br>
-                <label for="newPassword" s>New Password:</label>
-                <input type="password" id="newPassword" name="newPassword" s><br><br>
-            </form>
-        </div> -->
-   
 
          <div class="button-container">
             <input type="submit" value="Submit">
-            <button><a href="changepass.html">Change Password</a></button>
+            <button><a href="changepass.php">Change Password</a></button>
          </div>
 
          </form>

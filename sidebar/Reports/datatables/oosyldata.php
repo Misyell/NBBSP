@@ -1,3 +1,17 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,18 +39,37 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
+					<th>Picture</th>
+					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Fisrt Name</th>
+					<th>Age</th>
 					<th>Address</th>
-					<th>Birthday</th>
-					<th>Occupation</th>
-					<th>Residential House Type</th>
-					<th>Year/s of Residency</th>
 					<th>Action</th>
-					
 				</tr>
 			</thead>
+			<?php
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve selected radio button value
+    $radioOption = isset($_POST['osy']) ? $_POST['osy'] : '';
+    $address = $row['Hnum']. ','.  $row['street']. ','. $row['Brgy']. ','. $row['municipality']. ','. $row['province'];
 
+    // Check if "Yes" is selected
+    if ($radioOption === 'yes') {
+        // Build and execute the SQL query
+        $sql = "SELECT myFile, fname, lname, age, Hnum, street, Brgy, municipality, province, country FROM tblresident WHERE osy = 'yes'";
+        $result = mysqli_query($conn, $sql);
+
+        // Process and display results
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["myFile"]. "</td><td>". $row["fname"]. "</td><td>". $row["lname"]. "</td><td>" . $row["age"]. "</td><td>". $address ."</td><td>". $row["country"]."</td></tr>";
+            }
+        } else {
+            echo "No data";
+        }
+    }
+}
+?>
 		</table>
 	</table>
 </div>
@@ -61,18 +94,18 @@
 		scrollX: true,
 		responsive: true,
 		dom: 'Bfrtip',
-      buttons: [
+      buttons:  [
 			{
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "Inhabitant List"
+				extend:'excel',  titleAttr: "Export to Excel", title : "Out of School Youth"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "Inhabitant List"
+				extend:'pdf', titleAttr: "Export to PDF", title : "Out of School Youth"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "Inhabitant List",  
+				extend: 'print', titleAttr: "Print", title : "Out of School Youth",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -98,6 +131,9 @@
 	  });
 	  </script>
 	
+	<?php
+$conn->close();
+?>
 
 </body>
 </html>

@@ -1,3 +1,17 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +28,6 @@
 		}
 		a {
 			text-decoration: none;
-			
-		}
-		button a{
 			color: black;
 		}
 	</style>
@@ -28,16 +39,42 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
-					<th>Module</th>
+					<th></th>
+					<th>Picture</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Age</th>
+					<th>Address</th>
+					<th>Country</th>
 					<th>Action</th>
-					<th>Descriptiopn</th>
-					<th>Added User</th>
-					<th>Added Time</th>
-				
-					
 				</tr>
 			</thead>
+				
+<?php
 
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve selected radio button value
+    $radioOption = isset($_POST['ofw']) ? $_POST['ofw'] : '';
+    $address = $row['Hnum']. ','.  $row['street']. ','. $row['Brgy']. ','. $row['municipality']. ','. $row['province'];
+
+    // Check if "Yes" is selected
+    if ($radioOption === 'yes') {
+        // Build and execute the SQL query
+        $sql = "SELECT myFile, fname, lname, age, Hnum, street, Brgy, municipality, province, country FROM tblresident WHERE ofw = 'yes'";
+        $result = mysqli_query($conn, $sql);
+
+        // Process and display results
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["myFile"]. "</td><td>". $row["fname"]. "</td><td>". $row["lname"]. "</td><td>" . $row["age"]. "</td><td>". $address ."</td><td>". $row["country"]."</td></tr>";
+            }
+        } else {
+            echo "No data";
+        }
+    }
+}
+?>
 		</table>
 	</table>
 </div>
@@ -62,18 +99,18 @@
 		scrollX: true,
 		responsive: true,
 		dom: 'Bfrtip',
-      buttons: [
+      buttons:  [
 			{
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "Log Report"
+				extend:'excel',  titleAttr: "Export to Excel", title : "OFW List"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "Log Report"
+				extend:'pdf', titleAttr: "Export to PDF", title : "OFW List"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "Log Report",  
+				extend: 'print', titleAttr: "Print", title : "OFW List",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -99,6 +136,9 @@
 	  });
 	  </script>
 	
+	<?php
+$conn->close();
+?>
 
 </body>
 </html>

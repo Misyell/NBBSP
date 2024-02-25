@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -8,50 +10,88 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
       <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="../css/profile.css">
+      <link rel="stylesheet" href="../css/side&navtemp.css">
+
+      <title>Complaint Box</title>
       <title>NBBSP</title>
-        <meta name="description" content="barangay management information system" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#03a9f4" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="description" content="barangay management information system" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="theme-color" content="#03a9f4" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@site" />
-        <meta name="twitter:url" content="" />
-        <meta name="twitter:title" content="barangay management information system" />
-        <meta name="twitter:description" content="barangay management information system" />
-        <meta name="twitter:image" content="" />
+      <!-- Twitter Card -->
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@site" />
+      <meta name="twitter:url" content="" />
+      <meta name="twitter:title" content="barangay management information system" />
+      <meta name="twitter:description" content="barangay management information system" />
+      <meta name="twitter:image" content="" />
 
-        <!-- Open Graph -->
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Barangay management information system" />
-        <meta property="og:description" content="Barangay management information system" />
-        <meta property="og:site_name" content="My App" />
-        <meta property="og:url" content="" />
-        <meta property="og:image" content="" />
+      <!-- Open Graph -->
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Barangay management information system" />
+      <meta property="og:description" content="Barangay management information system" />
+      <meta property="og:site_name" content="My App" />
+      <meta property="og:url" content="" />
+      <meta property="og:image" content="" />
 
-        <link rel="manifest" href="../html/manifest.json" />
-        <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
+      <link rel="manifest" href="../html/manifest.json" />
+      <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
 
-        <!-- Apple touch icon -->
-        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
-    </head>
+      <!-- Apple touch icon -->
+      <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
+
+      <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  .container-1 {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .title {
+    text-align: center;
+    color: #333;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .status-form {
+    display: inline-block;
+  }
+</style>
+  </head>
 
 
-        <script>
-            if ("serviceWorker" in navigator) {
-                window.addEventListener("load", function () {
-                    navigator.serviceWorker
-                        .register("../html/serviceWorker.js")
-                        .then((registration) => {
-                            console.log("SW registration successful");
-                        });
-                });
-            }
-        </script>
-
-   <body>
+      <script>
+          if ("serviceWorker" in navigator) {
+              window.addEventListener("load", function () {
+                  navigator.serviceWorker
+                      .register("../html/serviceWorker.js")
+                      .then((registration) => {
+                          console.log("SW registration successful");
+                      });
+              });
+          }
+      </script>
+  </body>
    <div class="wrapper">
       <!-- Sidebar bg -->
       <img src="assets/img/sidebar-bg.jpg" alt="sidebar img" class="bg-image">
@@ -76,7 +116,7 @@
             <div class="sidebar__content">
               
                <div class="sidebar__list">
-                  <a href="./profile.html" class="sidebar__link active-link">
+                  <a href="./profile.php" class="sidebar__link active-link">
                      <i class="ri-user-line"></i>
                      <span class="sidebar__link-name">Profile</span>
                      <span class="sidebar__link-floating">Profile</span>
@@ -130,27 +170,44 @@
          </nav>
       </div>
 
+
       <!--=============== MAIN ===============-->
       <main class="main-container" id="main">
-         
-         <section id="profile">
-            <div class="section__pic-container">
-              <img src="../img/user.png" alt="John Doe profile picture" />
-              <h1>Melissa Pontejos</h1>
-              <p>melissapontejos@gmail.com</p>
-            </div>
-            <div class="section__text">
-             <div class="row"><p>Full Name:<span class="name" align="right">Melissa Pontejos</span> </p> </div>
-             <p>Email Address: <span class="email">melissapontejos@gmail.com</span> </p> 
-             <p>Phone Number: <span class="num">09999999999</span></p> 
-             <p>Address:<span class="add">123 Manila Philippines</span> </p> 
-             <p>Birthdate:<span class="bday">January 9, 2002</span></p>  
-             <p>Gender:  <span class="gender">Female</span></p>
-             
-      
-              </div>
-          </section> 
-
+      <div class="container-1">
+  <h1 class="title">Barangay Transaction History</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Resident Name</th>
+        <th>Purpose</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2024-02-15</td>
+        <td>Juan dela Cruz</td>
+        <td>Certificate of Residency</td>
+        <td>Approved</td>
+      </tr>
+      <tr>
+        <td>2024-02-10</td>
+        <td>Maria Santos</td>
+        <td>Clearance for Employment</td>
+        <td>Denied</td>
+      </tr>
+      <tr>
+        <td>2024-02-05</td>
+        <td>Pedro Hernandez</td>
+        <td>Barangay Clearance</td>
+        <td>Approved</td>
+      </tr>
+      <!-- Add more transactions as needed -->
+    </tbody>
+  </table>
+</div>
+ 
       </main>
 
       <footer>
@@ -158,6 +215,7 @@
       </footer>   
    </div>   
       <!--=============== MAIN JS ===============-->
+
       <script src="../js/sidebar.js"></script>
    </body>
 </html>

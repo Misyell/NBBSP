@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -9,8 +11,48 @@
 
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="../css/profile.css">
+      <title>NBBSP</title>
+        <meta name="description" content="barangay management information system" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#03a9f4" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-   </head>
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@site" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:title" content="barangay management information system" />
+        <meta name="twitter:description" content="barangay management information system" />
+        <meta name="twitter:image" content="" />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Barangay management information system" />
+        <meta property="og:description" content="Barangay management information system" />
+        <meta property="og:site_name" content="My App" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+
+        <link rel="manifest" href="../html/manifest.json" />
+        <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous"></script>
+
+        <!-- Apple touch icon -->
+        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon_120.png" />
+    </head>
+
+
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker
+                        .register("../html/serviceWorker.js")
+                        .then((registration) => {
+                            console.log("SW registration successful");
+                        });
+                });
+            }
+        </script>
+
    <body>
    <div class="wrapper">
       <!-- Sidebar bg -->
@@ -42,28 +84,21 @@
                      <span class="sidebar__link-floating">Profile</span>
                   </a>
 
-                  <a href="./Homepage.html" class="sidebar__link">
-                     <i class="ri-home-4-line"></i>
-                     <span class="sidebar__link-name">Home</span>
-                     <span class="sidebar__link-floating">Home</span>
+                  <a href="./manageacc.php" class="sidebar__link">
+                     <i class="ri-registered-line"></i>
+                     <span class="sidebar__link-name">Manage Account</span>
+                     <span class="sidebar__link-floating">Manage Account</span>
                   </a>
-                  
-                  <a href="./request.html" class="sidebar__link">
+                  <a href="./request.php" class="sidebar__link">
                      <i class="ri-file-edit-line"></i>
                      <span class="sidebar__link-name">Request</span>
                      <span class="sidebar__link-floating">Request</span>
                   </a>
 
-                  <a href="./complaint.html" class="sidebar__link">
+                  <a href="./complaint.php" class="sidebar__link">
                      <i class="ri-archive-fill"></i>
                      <span class="sidebar__link-name">Complaint Box</span>
                      <span class="sidebar__link-floating">Complaint Box</span>
-                  </a>
-
-                  <a href="./setting.html" class="sidebar__link">
-                     <i class="ri-settings-4-line"></i>
-                     <span class="sidebar__link-name">Setting</span>
-                     <span class="sidebar__link-floating">Setting</span>
                   </a>
                </div>
 
@@ -76,7 +111,7 @@
                   </a>
 
 
-                  <a href="./login.html" class="sidebar__link">
+                  <a href="./index.html" class="sidebar__link">
                      <i class="ri-logout-box-r-line"></i>
                      <span class="sidebar__link-name">Logout</span>
                      <span class="sidebar__link-floating">Logout</span>
@@ -99,8 +134,24 @@
 
       <!--=============== MAIN ===============-->
       <main class="main-container" id="main">
-         
+     
+         <section id="profile">
+            <div class="section__pic-container">
+              <img src="../img/user.png" alt="John Doe profile picture" />
+              <h1><?= $fetch_profile['username']  ?></h1>
+              <p>melissapontejos@gmail.com</p>
+            </div>
+            <div class="section__text">
+             <div class="row"><p>Full Name:<span class="name" align="right">Melissa Pontejos</span> </p> </div>
+             <p>Email Address: <span class="email">melissapontejos@gmail.com</span> </p> 
+             <p>Phone Number: <span class="num">09999999999</span></p> 
+             <p>Address:<span class="add">123 Manila Philippines</span> </p> 
+             <p>Birthdate:<span class="bday">January 9, 2002</span></p>  
+             <p>Gender:  <span class="gender">Female</span></p>
+             
       
+              </div>
+          </section> 
 
       </main>
 

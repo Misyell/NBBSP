@@ -21,13 +21,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sign up logic
     if (isset($_POST['signup'])) {
         $username = $_POST['username'];
+        $fname = $_POST['fname'];
+        $mname = $_POST['mname'];
+        $lname = $_POST['lname'];
+        $ename = $_POST['ename'];
         $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $bday = $_POST['bday'];
+        $gender = $_POST['gender'];
         $password = $_POST['password'];
 
-        // Prepare and bind the insert statement
-        $stmt = $conn->prepare("INSERT INTO userusers (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $password);
+        $address_parts = explode(" ", $address);
+        $hnum = isset($address_parts[0]) ? $address_parts[0] : "";
+        $street = isset($address_parts[1]) ? $address_parts[1] : "";
+        $brgy = isset($address_parts[2]) ? $address_parts[2] : "";
+        $municipality = isset($address_parts[3]) ? $address_parts[3] : "";
+        $province = isset($address_parts[4]) ? $address_parts[4] : "";
 
+        // Prepare and bind the insert statement
+        $stmt = $conn->prepare("INSERT INTO userusers (username, fname, mname, lname, ename, email, phone, address, bday, gender, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssss", $username, $fname, $mname, $lname, $ename, $email, $phone, $address, $bday, $gender, $password);
+
+        $stmt2 = $conn->prepare("INSERT INTO tblresident (fname, mname, lname, ename, phone, hnum, street, brgy, municipality, province, bday, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt2->bind_param("ssssssssssss", $fname, $mname, $lname, $ename, $phone, $hnum, $street, $brgy, $municipality, $province, $bday, $gender);
+        $stmt2->execute();
+        $stmt2->close();
         // Check if username or email already exists
         $check_query = "SELECT * FROM userusers WHERE username = '$username' OR email = '$email'";
         $result = $conn->query($check_query);
@@ -128,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Username" required/>
+                    <input type="text" name="username" placeholder="username" required/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
@@ -145,11 +164,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Username" required/>
+                    <input type="text" name="username" placeholder="UserName" required/>
+                </div>
+                <div class="input-field-1">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="fname" placeholder="First Name" required/>
+            
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="mname" placeholder="Middle Name" />
+                </div>
+                <div class="input-field-1">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="lname" placeholder="Last Name" required/>
+             
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="ename" placeholder="ex. (Jr/Sr)" />
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
                     <input type="email" name="email" placeholder="Email" required/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-phone"></i>
+                    <input type="num" name="phone" placeholder="Phone" required/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-home"></i>
+                    <input type="text" name="address" placeholder="Address" required/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-birthday-cake"></i>
+                    <input type="date" name="bday" placeholder="Birthday" required/>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-venus-mars"></i>
+                    <input type="text" name="gender" placeholder="Gender" required/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>

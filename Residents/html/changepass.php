@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+include 'dbcon.php';
+
+if(isset($_POST['submit'])) {
+    // Retrieve user ID from session
+    $id = $_SESSION['id'];
+
+    // Sanitize input data
+    $op = mysqli_real_escape_string($con, $_POST['op']);
+    $np = mysqli_real_escape_string($con, $_POST['np']);
+    $c_np = mysqli_real_escape_string($con, $_POST['c_np']);
+
+    // Check if all fields are filled
+    if(empty($op) || empty($np) || empty($c_np)) {
+        $message = 'All fields are required!';
+    } else {
+        // Retrieve current password from the database
+        $select_old_pass = $conn->prepare("SELECT password FROM userusers WHERE id = ?");
+        $select_old_pass->bind_param("i", $id);
+        $select_old_pass->execute();
+        $result = $select_old_pass->get_result();
+        $row = $result->fetch_assoc();
+        $prev_pass = $row['password'];
+
+        // Check if the old password matches the one in the database
+        if (md5($op) !== $prev_pass) {
+            $message = 'Old password not matched!';
+        } elseif ($np !== $c_np) {
+            $message = 'New passwords do not match!';
+        } else {
+            // Hash the new password
+            $hashed_password = md5($np); // You should use a stronger hashing algorithm
+            // Update the password in the database
+            $update_pass = $conn->prepare("UPDATE userusers SET password = ? WHERE id = ?");
+            $update_pass->bind_param("si", $hashed_password, $id);
+            $update_pass->execute();
+            $update_pass->close();
+            $message = 'Password updated successfully!';
+        }
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -78,7 +127,7 @@
             <div class="sidebar__content">
               
                <div class="sidebar__list">
-                  <a href="./profile.html" class="sidebar__link active-link">
+                  <a href="./profile.php" class="sidebar__link active-link">
                      <i class="ri-user-line"></i>
                      <span class="sidebar__link-name">Profile</span>
                      <span class="sidebar__link-floating">Profile</span>
@@ -138,17 +187,7 @@
 
       <div class="title"> 
             <h1>Edit Profile</h1></div>
-            <br><br>
-            <p style="text-align: center;font-size: x-large; color: black; font-weight: 450;"> Christian Angelo Balsomo</p>
-            <p style="font: 200; text-align: center;"> christianangelobalsomo@gmail.com </p>
             
-              <div class="row">
-                 <!-- left column -->
-                 <div class="col-md-3">
-                   <div class="text-center">
-                     <img src="../img/profile-icon.png" class="responsive" alt="avatar">
-                     <br>
-                 </div>
                  
                  <hr style="
                         border: 1px solid #171922;
@@ -162,24 +201,21 @@
                    <br>
 
                    <h2 style="color: rgb(119, 134, 172); margin: 5px 10px 30px;">CHANGE PASSWORD</h2>
-                   
-                   <form class="form-horizontal" role="form" style="text-align:left;">
+                   <?php if(isset($message)) echo $message; ?>
+
+                   <form class="form-horizontal" role="form" method="post" style="text-align:left;">
 
                      <p style="color: #171922; margin-left: 10px;"> Please enter below the required informations: </p> <br>
-                     <label for="username" style="color: #171922; margin-left: 10px;">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                     <input type="text" id="uname" name="uname" placeholder="JDelacruz15" style="margin-left: 13px;">
+                     <label for="username" style="color: #171922; margin-left: 10px;">Old Password:</label>
+                     <input type="password" id="uname" name="op" placeholder="Old Password" style="margin-left: 13px;height: 30px;border-radius: 10px;">                     
                      <br><br>
-                     <label for="Password" style="color: #171922; margin-left: 10px;">New Password:&nbsp;&nbsp;
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
-                     <input type="password" id="pw" name="pw" style="margin-left: 13px;">
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <label for="Password" style="color: #171922; margin-left: 10px;">New Password:
+                     </label>
+                     <input type="password" id="pw" name="np" placeholder="New Password" style="margin-left: 13px;height: 30px;border-radius: 10px;">
                      <br><br>
-                     <label for="NewPassword" style="color: #171922; margin-left: 10px;">Confirm password: &nbsp;&nbsp; </label>
-                     <input type="password" id="pw" name="pw" style="margin-left: 13px;">
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-                     <input type="submit" value="Change Password" style="color: white;margin-left: 10px;height: 31px;border-radius: 10px;background: #246DEC;">
-                     <br><br>
+                     <label for="NewPassword" style="color: #171922; margin-left: 10px;">Confirm New Password: </label>
+                     <input type="password" id="pw" name="c_np" placeholder="Confirm New Password" style="margin-left: 13px;height: 30px;border-radius: 10px;"><br>
+                     <input type="submit" value="Change Password" style="color: white;margin-left: 88px;margin-top: 32px;height: 36px;border-radius: 10px;width: 134px;background: #246DEC;">                     <br><br>
 
                    </form>
                  </div>

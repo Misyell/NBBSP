@@ -1,3 +1,17 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +28,9 @@
 		}
 		a {
 			text-decoration: none;
+			
+		}
+		button a{
 			color: black;
 		}
 	</style>
@@ -25,14 +42,28 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
-					<th>Picture</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Household Number</th>
-					<th>Present Address</th>
+					
+					<th>ID</th>
+					<th>User</th>
+					<th>Log Date and Time</th>
 					<th>Action</th>
+					
 				</tr>
 			</thead>
+			<?php
+                        $sql = "SELECT id, user, logdate, action FROM tbllogs";
+                        $result= mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result);
+
+                    if ($result-> num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            echo "<tr><td>" . $row["id"]. "</td><td>". $row["user"]. "</td><td>". $row["logdate"]. "</td><td>" . $row["action"]."</td></tr>";
+                        }
+                    } else{
+                        echo "No data";
+                    }
+
+                ?>
 
 		</table>
 	</table>
@@ -63,13 +94,13 @@
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "Solo Parent"
+				extend:'excel',  titleAttr: "Export to Excel", title : "Log Report"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "Solo Parent"
+				extend:'pdf', titleAttr: "Export to PDF", title : "Log Report"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "Solo Parent",  
+				extend: 'print', titleAttr: "Print", title : "Log Report",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -95,6 +126,10 @@
 	  });
 	  </script>
 	
+	<?php
+$conn->close();
+?>
+
 
 </body>
 </html>

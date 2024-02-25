@@ -30,7 +30,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/logdata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/logdata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     

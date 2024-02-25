@@ -1,3 +1,17 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,17 +42,30 @@
 					<th>Picture</th>
 					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Age</th>
 					<th>Address</th>
-					<th>Country</th>
-					<th>Work in Abroad</th>
+					<th>Age</th>
+					<th>Sex</th>
 					<th>Action</th>
 				</tr>
 			</thead>
+			<?php
+                        $sql = "SELECT myFile, fname, lname, Hnum, street, Brgy, municipality, province, age, gender FROM tblresident WHERE age >= 60";
+                        $result= mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result);
+
+                    if ($result-> num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            echo "<tr><td>" . $row["myFile"]. "</td><td>". $row["fname"]. "</td><td>". $row["lname"]. "</td><td>" . $address. "</td><td>". $row["age"] ."</td><td>". $row["gender"]."</td></tr>";
+                        }
+                    } else{
+                        echo "No data";
+                    }
+
+                ?>
 
 		</table>
-	</table>
-</div>
+	
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>	
@@ -65,13 +92,13 @@
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "OFW List"
+				extend:'excel',  titleAttr: "Export to Excel", title : "All Registration"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "OFW List"
+				extend:'pdf', titleAttr: "Export to PDF", title : "All Registration"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "OFW List",  
+				extend: 'print', titleAttr: "Print", title : "All Registration",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -97,6 +124,9 @@
 	  });
 	  </script>
 	
+	<?php
+$conn->close();
+?>
 
 </body>
 </html>

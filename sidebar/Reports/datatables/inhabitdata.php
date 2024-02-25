@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -25,15 +39,33 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
-					<th>Picture</th>
-					<th>First Name</th>
-					<th>Middle Name</th>
 					<th>Last Name</th>
-					<th>Contact Number</th>
-					<th>Job</th>
+					<th>Fisrt Name</th>
+					<th>Address</th>
+					<th>Birthday</th>
+					<th>Occupation</th>
+					<th>Residential House Type</th>
+					<th>Year/s of Residency</th>
 					<th>Action</th>
+					
 				</tr>
 			</thead>
+			<?php
+                        $sql = "SELECT lname, fname, Hnum, street, Brgy, municipality, province, dob, job, housetype, year FROM tblresident";
+                        $result= mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result);
+						$address = $row['Hnum']. ','.  $row['street']. ','. $row['Brgy']. ','. $row['municipality']. ','. $row['province'];
+
+				
+                    if ($result-> num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            echo "<tr><td>" . $row["lname"]. "</td><td>". $row["fname"]. "</td><td>". $address. "</td><td>" . $row["dob"]. "</td><td>". $row["job"] ."</td><td>". $row["housetype"]. "</td><td>" . $row["year"]."</td></tr>";
+                        }
+                    } else{
+                        echo "No data";
+                    }
+
+                ?>
 
 		</table>
 	</table>
@@ -64,13 +96,13 @@
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "Employment List"
+				extend:'excel',  titleAttr: "Export to Excel", title : "Inhabitant List"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "Employment List"
+				extend:'pdf', titleAttr: "Export to PDF", title : "Inhabitant List"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "Employment List",  
+				extend: 'print', titleAttr: "Print", title : "Inhabitant List",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -96,6 +128,10 @@
 	  });
 	  </script>
 	
-
+	<?php
+	$conn->close();
+	?>
+	
+	
 </body>
 </html>

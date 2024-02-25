@@ -1,3 +1,17 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,17 +41,32 @@
 				<tr>
 					<th>Picture</th>
 					<th>First Name</th>
+					<th>Middle Name</th>
 					<th>Last Name</th>
-					<th>Address</th>
-					<th>Age</th>
-					<th>Sex</th>
+					<th>Contact Number</th>
+					<th>Job</th>
 					<th>Action</th>
 				</tr>
 			</thead>
-			
+			<?php
+                        $sql = "SELECT myFile, fname, mname, lname, contact, job  FROM tblresident";
+                        $result= mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result);
+
+                    if ($result-> num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            echo "<tr><td>" . $row["myFile"]. "</td><td>". $row["fname"]. "</td><td>". $row["mname"]. "</td><td>" . $row["lname"]. "</td><td>". $row["contact"] ."</td><td>". $row["job"]. "</td></tr>";
+                        }
+                    } else{
+                        echo "No data";
+                    }
+
+                ?>
+
+
 		</table>
-	
-	</div>
+	</table>
+</div>
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>	
@@ -59,18 +88,18 @@
 		scrollX: true,
 		responsive: true,
 		dom: 'Bfrtip',
-      buttons:  [
+      buttons: [
 			{
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "All Registration"
+				extend:'excel',  titleAttr: "Export to Excel", title : "Employment List"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "All Registration"
+				extend:'pdf', titleAttr: "Export to PDF", title : "Employment List"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "All Registration",  
+				extend: 'print', titleAttr: "Print", title : "Employment List",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -96,6 +125,10 @@
 	  });
 	  </script>
 	
+	<?php
+$conn->close();
+?>
+
 
 </body>
 </html>

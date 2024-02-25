@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 	<link type="text/css" href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
 
+
 	<style>
 		tr{
 			padding: 10px;
@@ -25,15 +26,17 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
-					<th>Picture</th>
+					<th></th>
+					<th>House Number</th>
+					<th>Resident Type</th>
 					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Age</th>
-					<th>Address</th>
+					<th>RBI Form</th>
+					<th>BADAC</th>
 					<th>Action</th>
 				</tr>
 			</thead>
-
+	
 		</table>
 	</table>
 </div>
@@ -58,18 +61,18 @@
 		scrollX: true,
 		responsive: true,
 		dom: 'Bfrtip',
-      buttons:  [
+      buttons: [
 			{
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "Out of School Youth"
+				extend:'excel',  titleAttr: "Export to Excel", title : "All Registration"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "Out of School Youth"
+				extend:'pdf', titleAttr: "Export to PDF", title : "All Registration"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "Out of School Youth",  
+				extend: 'print', titleAttr: "Print", title : "All Registration",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )

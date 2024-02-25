@@ -1,3 +1,17 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_barangay";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,17 +39,43 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Picture</th>
 					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Age</th>
-					<th>Address</th>
+					<th>Household Number</th>
+					<th>Present Address</th>
 					<th>Action</th>
 				</tr>
 			</thead>
+			<?php
+            // Check if the form is submitted
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Retrieve selected radio button value
+                $radioOption = isset($_POST['soloparent']) ? $_POST['soloparent'] : '';
 
-		</table>
-	</table>
+                // Check if "Yes" is selected
+                if ($radioOption === 'yes') {
+                    // Build and execute the SQL query
+                    $sql = "SELECT myFile, fname, lname, housenum, Hnum, street, Brgy, municipality, province FROM tblresident WHERE soloparent = 'yes'";
+                    $result = mysqli_query($conn, $sql);
+
+                    // Process and display results
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            // Move the address calculation inside the loop
+                            $address = $row['Hnum'] . ',' . $row['street'] . ',' . $row['Brgy'] . ',' . $row['municipality'] . ',' . $row['province'];
+                            echo "<tr><td>" . $row["myFile"] . "</td><td>" . $row["fname"] . "</td><td>" . $row["lname"] . "</td><td>" . $row["housenum"] . "</td><td>" . $address . "</td></tr>";
+                        }
+                    } else {
+                        echo "No data";
+                    }
+                }
+            }
+            ?>
+        </table>
+    </div>
+
 </div>
 
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -58,18 +98,18 @@
 		scrollX: true,
 		responsive: true,
 		dom: 'Bfrtip',
-      buttons:  [
+      buttons: [
 			{
 				extend: 'copy', titleAttr: "Copy"
 			}, 
 			{
-				extend:'excel',  titleAttr: "Export to Excel", title : "Kasambahay List"
+				extend:'excel',  titleAttr: "Export to Excel", title : "Solo Parent"
 			}, 
 			{
-				extend:'pdf', titleAttr: "Export to PDF", title : "Kasambahay List"
+				extend:'pdf', titleAttr: "Export to PDF", title : "Solo Parent"
 			},
 			{
-				extend: 'print', titleAttr: "Print", title : "Kasambahay List",  
+				extend: 'print', titleAttr: "Print", title : "Solo Parent",  
 				customize: function ( win ) {
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
@@ -95,6 +135,9 @@
 	  });
 	  </script>
 	
+	<?php
+$conn->close();
+?>
 
 </body>
 </html>

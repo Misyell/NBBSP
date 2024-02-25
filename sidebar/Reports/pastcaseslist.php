@@ -28,7 +28,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/pastcasesdata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/pastcasesdata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     

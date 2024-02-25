@@ -378,14 +378,15 @@ input#dadd{
   border: 1px solid #246dec;
   border-radius: 4px;
   outline: none;
-  padding: 4px 0.8em;
+  padding: 1px 0.8em;
   margin-right: 15px;
   color: #ffffff;
   font-size: 1em;
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 38px;
+  margin-left: 7px;
+
 }
 
 .file-upload__button:active {
@@ -531,6 +532,9 @@ button a {
 input[type="submit"] {
   margin: 12px 0px 10px 48px;
  
+}
+button {
+margin-left: 150px;
 }
 }
 /* For large devices */

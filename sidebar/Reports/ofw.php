@@ -28,7 +28,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/ofwdata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/ofwdata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     

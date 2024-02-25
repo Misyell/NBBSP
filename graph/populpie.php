@@ -1,22 +1,9 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Street Population Pie Graph</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-
 <?php
-// Replace these with your actual MySQL database credentials
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "db_barangay";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -24,51 +11,57 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from MySQL
-$query = "SELECT street, COUNT(id) AS user_count FROM  tblresident GROUP BY street";
-$result = $conn->query($query);
-
-// Check if there are results
-if ($result->num_rows > 0) {
-    $streetData = [];
-    
-    // Fetch data into an associative array
-    while ($row = $result->fetch_assoc()) {
-        $streetData[$row['street']] = $row['user_count'];
-    }
-
-    // Convert data to JSON for JavaScript
-    $streetDataJSON = json_encode($streetData);
-
-    // Close the MySQL connection
-    $conn->close();
-} else {
-    echo "No data found";
-}
+//street and name
+$street= "Sitio puting bato";
+$street= "Sitio sto.niño";
+$street3= "Santiago compound";
+$street3= "Lambatan";
+$street3= "Fiahport";
+$street3= "Lapu lapu extension";
+$street3= "Ilang ilang";
+$street3= "Carnation";
+$street3= "Everlasting";
+$street3= "Daisy";
+$street3= "Anturium";
+$street3= "Champaca";
+$street3= "Samapaguita";
+$street3= "Yellowbelly";
+$street3= "Catleya";
+$street3= "Nederland";
+$street3= "Buklod diwa";
+$street3= "Sapipa";
+$street3= "Road10";
 ?>
 
-<canvas id="streetChart" width="400" height="400"></canvas>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-<script>
-var streetData = <?php echo $streetDataJSON; ?>;
-var ctx = document.getElementById('streetChart').getContext('2d');
+      function drawChart() {
 
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: Object.keys(streetData),
-        datasets: [{
-            data: Object.values(streetData),
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                // Add more colors as needed
-            ],
-        }],
-    },
-});
-</script>
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['PUROK 1',     11],
+          ['PUROK 2',      2],
+          ['PUROK 3',  2],
+          ['PUROK 4', 2],
+          ['PUROK 5',    7]
+        ]);
 
-</body>
+        var options = {
+          title: 'POPULATION'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 500px; height: 300px;"></div>
+  </body>
 </html>

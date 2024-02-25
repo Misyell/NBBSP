@@ -1,3 +1,4 @@
+<?include 'connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 	<link type="text/css" href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
-
 	<style>
 		tr{
 			padding: 10;
@@ -25,16 +25,39 @@
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Picture</th>
 					<th>First Name</th>
 					<th>Middle Name</th>
 					<th>Last Name</th>
 					<th>Contact Number</th>
-					<th>Person With Disability</th>
+					<th>Type</th>
 					<th>Action</th>
 				</tr>
 			</thead>
+			<?php
+			
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve selected radio button value
+    $radioOption = isset($_POST['pwd1']) ? $_POST['pwd1'] : '';
 
+    // Check if "Yes" is selected
+    if ($radioOption === 'yes') {
+        // Build and execute the SQL query
+        $sql = "SELECT myFile, fname, mname, lname, contact, pwd FROM tblresident WHERE pwd1 = 'yes'";
+        $result = mysqli_query($conn, $sql);
+
+        // Process and display results
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["myFile"]. "</td><td>". $row["fname"]. "</td><td>". $row["mname"]. "</td><td>" . $row["lname"]. "</td><td>". $row["contact"]. "</td><td>" .$row["pwd"]."</td></tr>";
+            }
+        } else {
+            echo "No data";
+        }
+    }
+}
+?>
 		</table>
 	</table>
 </div>
@@ -95,7 +118,9 @@
 	 
 	  });
 	  </script>
-	
+<?php
+$conn->close();
+?>
 
 </body>
 </html>

@@ -27,7 +27,7 @@
                   
  
                 <div class="table">
-                    <iframe src="./datatables/inhabitdata.html" frameborder="0" width="100%" height="600"></iframe>
+                    <iframe src="./datatables/inhabitdata.php" frameborder="0" width="100%" height="600"></iframe>
                 </div>  
                     
     

@@ -16,7 +16,7 @@
 
          .pdf-container {
            border: 1px solid #ccc;
-           height: 600px; /* Adjust height as needed */
+           height: 600px; 
            position: relative;
          }
          .pdf-container embed {
@@ -97,7 +97,7 @@
             <div class="sidebar__content">
               
                <div class="sidebar__list">
-                  <a href="./profile.html" class="sidebar__link active-link">
+                  <a href="./profile.php" class="sidebar__link active-link">
                      <i class="ri-user-line"></i>
                      <span class="sidebar__link-name">Profile</span>
                      <span class="sidebar__link-floating">Profile</span>
@@ -162,6 +162,9 @@
             </div>
             <p class="note">Note: The receipt will be given in barangay.</p>
           </div>
+
+          <button><a href="history.html">Proceed</a></button>
+
 
       </main>
 

@@ -39,6 +39,7 @@ if ($conn->connect_error) {
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Type of Request</th>
 					<th>Document Type</th>
 					<th>Purpose</th>

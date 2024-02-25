@@ -14,7 +14,7 @@ input {
 .container {
   position: relative;
   width: 100%;
-  background-color: #fff;
+  background-color: #246DEC;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -61,27 +61,27 @@ form.sign-in-form {
 }
 
 .title {
-  font-size: 2.2rem;
-  color: #444;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #fff;
 }
 
 .input-field {
   max-width: 380px;
   width: 100%;
   background-color: #f0f0f0;
-  margin: 10px 0;
-  height: 55px;
-  border-radius: 55px;
+  margin: 7px 0;
+  height: 40px;
+  border-radius: 10px;
   display: grid;
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
   position: relative;
+  
 }
 
 .input-field i {
   text-align: center;
-  line-height: 55px;
+  line-height: 44px;
   color: #acacac;
   transition: 0.5s;
   font-size: 1.1rem;
@@ -95,13 +95,46 @@ form.sign-in-form {
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  border-radius: 10px;
+  height: 38px;
 }
 
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
 }
+.input-field-1 {
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 7px 0;
+  height: 47px;
+  border-radius: 10px;
+  padding: 0 0.1rem;
+  position: relative;
+}
+.input-field-1 i {
+  text-align: center;
+  line-height: 44px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 17px;
+}
+.input-field-1 input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-size: 13px;
+  color: #333;
+  border-radius: 10px;
+  height: 46px;
+}
 
+.input-field-1 input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
@@ -134,7 +167,7 @@ form.sign-in-form {
 
 .btn {
   width: 150px;
-  background-color: #246DEC;
+  background-color: #fff;
   border: none;
   outline: none;
   height: 49px;
@@ -145,10 +178,11 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+  color: #246DEC;
 }
 
 .btn:hover {
-  background-color: #246DEC;
+  background-color: #fff;
 }
 .panels-container {
   position: absolute;
@@ -168,7 +202,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #246DEC 0%, #246DEC 100%);
+  background-image: linear-gradient(-45deg, #fff 0%, #fff 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -200,7 +234,7 @@ form.sign-in-form {
 }
 
 .panel .content {
-  color: #fff;
+  color: #246DEC;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
@@ -219,11 +253,12 @@ form.sign-in-form {
 .btn.transparent {
   margin: 0;
   background: none;
-  border: 2px solid #fff;
+  border: 2px solid #246DEC;
   width: 130px;
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+  color: #246DEC;
 }
 
 .right-panel .image,
@@ -384,7 +419,7 @@ form.sign-in-form {
   }
   .panel .content {
     padding: 0.5rem 1rem;
-    margin-top: -29px;
+    margin-top: -15px;
   
   }
   .container {
@@ -398,10 +433,10 @@ form.sign-in-form {
   }
 
   .container.sign-up-mode:before {
-    bottom: 30%;
+    bottom: 29%;
     left: 50%;
   }
   .logo img {
-    width: 92px;
+    width: 90px;
 }
 }

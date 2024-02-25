@@ -1,4 +1,4 @@
-<?php include 'if-else.php';?>
+<?php include 'switch.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +84,7 @@
             <div class="sidebar__content">
               
                <div class="sidebar__list">
-                  <a href="./profile.html" class="sidebar__link active-link">
+                  <a href="./profile.php" class="sidebar__link active-link">
                      <i class="ri-user-line"></i>
                      <span class="sidebar__link-name">Profile</span>
                      <span class="sidebar__link-floating">Profile</span>

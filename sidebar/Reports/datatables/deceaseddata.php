@@ -39,6 +39,7 @@ if ($conn->connect_error) {
 		<table id="example" class="display nowrap" style="width:100%">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Picture</th>
 					<th>Name</th>
 					<th>Address</th>
