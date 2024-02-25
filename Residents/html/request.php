@@ -1,4 +1,4 @@
-<?php include 'switch.php';?>
+<?php include 'if-else.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
