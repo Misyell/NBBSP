@@ -69,16 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        // Query to check if the user exists and the password is correct
         $query = "SELECT * FROM userusers WHERE username = '$username' AND password = '$password'";
         $result = $conn->query($query);
 
         if ($result->num_rows == 1) {
-            // Redirect the user to a dashboard or homepage upon successful sign-in
             header("Location: request.php");
             exit();
         } else {
-            $error_message = "Invalid username or password"; // Set error message
+            $error_message = "Invalid username or password"; 
         }
     }
 

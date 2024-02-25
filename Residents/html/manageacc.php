@@ -85,11 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $skill = $_POST['skill'];
     $idnum = $_POST['idnum'];
     $tin = $_POST['tin'];
-    $pwd = isset($_POST['pwd']) ? implode(", ", $_POST['pwd']) : ''; // Serialize the array into a string
+    $pwd = isset($_POST['pwd']) ? implode(", ", $_POST['pwd']) : ''; 
 
 
 
-    // Repeat the process for all other form fields
 
     // Handle file upload
     $target_dir = "uploads/";
